@@ -1,0 +1,18 @@
+baseURL: https://docli.dev
+languageCode: en-us
+title: Docli
+googleAnalytics: UA-135349489-1
+theme: book
+enableGitInfo: true
+enableEmoji: true
+disableKinds:
+  - taxonomy
+  - taxonomyTerm
+
+params:
+  bookMenuBundle: /menu
+  bookRepo: https://github.com/celicoo/docli
+  bookEditPath: edit/master/docs/content
+  # TODO(celicoo): change this.
+  # bookMenuBundleActiveLinkColor: \#004ed0
+  logo: /avatar.png
