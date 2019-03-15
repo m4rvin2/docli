@@ -1,6 +1,3 @@
-# Git
-
-{{< highlight go >}}
 package main
 
 import (
@@ -59,27 +56,27 @@ type Git struct {
 }
 
 type Commands struct {
-    Clone,
-    Init,
-    Add,
-    Move,
-    Reset,
-    Rm,
-    Bisect,
-    Grep,
-    Log,
-    Show,
-    Status,
-    Branch,
-    Checkout,
-    Commit,
-    Diff,
-    Merge,
-    Rebase,
-    Tag,
-    Fetch,
-    Pull,
-    Push bool
+	Clone,
+	Init,
+	Add,
+	Move,
+	Reset,
+	Rm,
+	Bisect,
+	Grep,
+	Log,
+	Show,
+	Status,
+	Branch,
+	Checkout,
+	Commit,
+	Diff,
+	Merge,
+	Rebase,
+	Tag,
+	Fetch,
+	Pull,
+	Push bool
 }
 
 func main() {
@@ -90,4 +87,3 @@ func main() {
 	var git Git
 	args.Bind(&git)
 }
-{{< /highlight >}}
