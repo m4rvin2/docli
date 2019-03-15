@@ -116,7 +116,7 @@ type Git struct {
 }
 {{< /highlight >}}
 
-**Note:** you can use **any** primitive type in your struct fields and use embedded structs to separate the categories of your arguments, you'll find examples of the latest in the [examples page]({{< relref "/docs/examples/docker.md" >}}).
+**Note:** you can use **any** primitive type in your struct fields and use embedded structs to separate the categories of your arguments, you'll find examples of the latest in the [examples page](https://github.com/celicoo/docli/tree/master/examples).
 
 Replace the call to `repr.Println(args)` with:
 

@@ -1,6 +1,3 @@
-# Docker
-
-{{< highlight go >}}
 package main
 
 import (
@@ -176,4 +173,3 @@ func main() {
 	var docker Docker
 	args.Bind(&docker)
 }
-{{< /highlight >}}

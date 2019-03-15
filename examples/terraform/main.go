@@ -1,6 +1,3 @@
-# Terraform
-
-{{< highlight go >}}
 package main
 
 import (
@@ -47,35 +44,35 @@ All other commands:
 
 type Terraform struct {
 	Commands
-    AllOtherCommands
+	AllOtherCommands
 }
 
 type Commands struct {
-    Apply,
-    Console,
-    Destroy,
-    Fmt,
-    Get,
-    Graph,
-    Import,
-    Init,
-    Output,
-    Plan,
-    Providers,
-    Push,
-    Refresh,
-    Show,
-    Taint,
-    Untaint,
-    Validate,
-    Version,
-    Workspace bool
+	Apply,
+	Console,
+	Destroy,
+	Fmt,
+	Get,
+	Graph,
+	Import,
+	Init,
+	Output,
+	Plan,
+	Providers,
+	Push,
+	Refresh,
+	Show,
+	Taint,
+	Untaint,
+	Validate,
+	Version,
+	Workspace bool
 }
 
 type AllOtherCommands struct {
-    Debug,
-    ForceUnlock,
-    State bool
+	Debug,
+	ForceUnlock,
+	State bool
 }
 
 func main() {
@@ -86,4 +83,3 @@ func main() {
 	var terraform Terraform
 	args.Bind(&terraform)
 }
-{{< /highlight >}}
