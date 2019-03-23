@@ -8,13 +8,28 @@
     <a href="https://godoc.org/github.com/celicoo/docli">
       <img alt="GoDoc" src="https://godoc.org/github.com/celicoo/docli?status.svg">
     </a>
+    <a href="#contributors">
+      <img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-orange.svg">
+    </a>
   </p>
 </div>
 
-Docli is a declarative language for describing command-line interfaces. It cuts down the boilerplate to the very minimum, so you can move on to the reason why you're making the app in the first place.
+Docli is a declarative language for describing command-line interfaces in Go programs. It cuts down the boilerplate to the very minimum, so you can move on to the reason why you're making the app in the first place.
 
 Docli is 100% inspired on [docopt](https://github.com/docopt/docopt.go).
 
 - [Documentation](https://docli.dev)
 - [Tutorial](https://docli.dev/docs/tutorial)
 - [Bug tracker](https://github.com/celicoo/docli/issues)
+
+## Contributors
+
+Thanks goes to these wonderful people:
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table><tr><td align="center"><a href="https://github.com/ri0t"><img src="https://avatars0.githubusercontent.com/u/1938065?v=4" width="75px;" alt="riot"/><br /><sub><b>riot</b></sub></a><br /><a href="https://github.com/celicoo/docli/commits?author=ri0t" title="Documentation">📖</a></td></tr></table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
