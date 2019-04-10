@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/celicoo/docli/internal/text"
 	. "github.com/celicoo/docli/pkg/args"
-	"github.com/celicoo/docli/pkg/args/internal/text"
 )
 
 const (

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/celicoo/docli/pkg/args/internal/text"
+	"github.com/celicoo/docli/internal/text"
 	"github.com/iancoleman/strcase"
 )
 
