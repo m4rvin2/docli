@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	. "github.com/celicoo/docli/pkg/args/internal/text"
+	. "github.com/celicoo/docli/internal/text"
 )
 
 const (
