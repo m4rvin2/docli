@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/celicoo/docli/internal/reger"
-	"github.com/celicoo/docli/pkg/args/internal/text"
 )
 
 // args returns the command-line arguments, starting after the program name.
@@ -16,11 +15,9 @@ func args() string {
 }
 
 // Parse returns the AST of the command-line arguments.
-func Parse(t text.Text) (Args, error) {
-	a, parser := Args{}, reger.Build(&Args{})
-	if err := parser.ParseString(args(), &a); err != nil {
-		return Args{}, err
+func Parse() (a Args) {
+	if err := reger.Build(&a).ParseString(args(), &a); err != nil {
+		panic(err)
 	}
-	a.text = t
-	return a, a.validate()
+	return
 }
