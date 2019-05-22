@@ -1,5 +1,7 @@
 package text
 
+import "github.com/iancoleman/strcase"
+
 // Text is both used as the grammar and the tree representation of the abstract
 // syntactic structure of a doc string.
 type Text struct {
@@ -30,17 +32,16 @@ func (t *Text) argument(name string) Argument {
 
 // Identifiers returns all identifiers of an argument if any of them match the
 // given value.
-func (t *Text) Identifiers(name string) (identifiers []string) {
+func (t *Text) Identifiers(name string) (identifiers []Identifier) {
 	argument := t.argument(name)
 	for _, identifier := range argument.Identifiers {
-		identifiers = append(identifiers, identifier.Name)
+		identifiers = append(identifiers, identifier)
 	}
 	return
 }
 
-// IsValidIdentifier returns true if the given value is a valid identifier of an
-// argument or false otherwise.
-func (t *Text) IsValidIdentifier(name string) bool {
-	argument := t.argument(name)
-	return len(argument.Identifiers) > 0
+// NameAsCamelCase returns the Identifier's name as camel case.
+// TODO(celicoo): improve this.
+func (i *Identifier) NameAsCamelCase() string {
+	return strcase.ToCamel(i.Name)
 }

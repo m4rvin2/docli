@@ -5,13 +5,11 @@ import (
 	"reflect"
 
 	"github.com/celicoo/docli/internal/text"
-	"github.com/iancoleman/strcase"
 )
 
 // Args is both used as the grammar and the tree representation of the abstract
 // syntactic structure of the command-line arguments.
 type Args struct {
-	text      text.Text
 	Arguments []Argument `(@@|`
 	_         string     `Pun|Sym|Oth|'\u0009')*`
 }
@@ -26,51 +24,50 @@ type Value struct {
 	String     string `@(Let|Num|Pun|Sym|Sep)+`
 }
 
-// validate validates the arguments given on the command-line.
-func (a *Args) validate() error {
-	for _, argument := range a.Arguments {
-		if a.text.IsValidIdentifier(argument.Identifier) {
-			continue
-		}
-		return fmt.Errorf("'%s' is not a valid argument", argument.Identifier)
-	}
-	return nil
-}
-
 // Bind binds the fields of the given struct with matching argument values.
-func (a *Args) Bind(i interface{}) {
-	v := reflect.ValueOf(i)
-	if v.Kind() == reflect.Ptr {
-		v = v.Elem()
+func (a *Args) Bind(c Command) {
+	v := reflect.ValueOf(c)
+	// Validate that given parameter is a pointer.
+	if v.Kind() != reflect.Ptr {
+		err := fmt.Errorf("cannot use c (type %[1]v) as type *%[1]v in argument to Bind", v.Type().Name())
+		panic(err)
 	}
-	if v.Kind() == reflect.Invalid || v.Kind() != reflect.Struct || v.NumField() == 0 {
-		return
-	}
+	e := v.Elem()
+	t := text.Parse(c.Doc())
 arguments:
-	for _, argument := range a.Arguments {
-		for _, identifier := range a.text.Identifiers(argument.Identifier) {
-			var retry bool
-		retry:
-			// strcamel doesn't support non-ASCII words unfortunately.
-			// refact(celicoo)
-			if retry {
-				identifier = strcase.ToCamel(identifier)
-			}
-			f := v.FieldByName(identifier)
+	for i := range a.Arguments { // slight faster.
+		n := a.Arguments[i].Identifier
+		if n == "help" {
+			c.Help()
+			return
+		}
+		for _, identifier := range t.Identifiers(n) {
+			f := e.FieldByName(identifier.NameAsCamelCase())
 			// Match found.
 			if f.CanSet() {
+				// Check if the field implements the Command interface.
+				t, ok := f.Addr().Interface().(Command)
+				if ok {
+					// If it does implement the Command interface, delete the current
+					// argument from a.Arguments to prevent returning an
+					// ErrInvalidArgument by mistake.
+					a.Arguments = append(a.Arguments[:i], a.Arguments[i+1:]...)
+					a.Bind(t)
+					return
+				}
 				if f.Kind() == reflect.Bool {
 					f.SetBool(true)
 				} else {
-					fmt.Sscan(argument.Value.String, f.Addr().Interface())
+					fmt.Sscan(a.Arguments[i].Value.String, f.Addr().Interface())
 				}
-				continue arguments
-			} else if retry {
-				// Next identifier.
+			} else {
 				continue
 			}
-			retry = true
-			goto retry
+			continue arguments
 		}
+		err := &InvalidArgumentError{n}
+		c.Error(err)
+		return
 	}
+	c.Run()
 }
