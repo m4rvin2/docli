@@ -1,6 +1,6 @@
-package args
+package docli
 
-type Command interface {
+type command interface {
 	// Doc returns the doc string of the [command].
 	Doc() string
 

@@ -6,7 +6,6 @@ import (
 
 	"github.com/alecthomas/repr"
 	"github.com/celicoo/docli"
-	"github.com/celicoo/docli/pkg/args"
 )
 
 type Git struct {
@@ -34,7 +33,7 @@ func (g *Git) Help() {
 
 func (g *Git) Error(err error) {
 	switch err.(type) {
-	case *args.InvalidArgumentError:
+	case *docli.InvalidArgumentError:
 		// Ignore InvalidArgumentError.
 		g.Run()
 	default:
@@ -44,6 +43,5 @@ func (g *Git) Error(err error) {
 
 func Execute() {
 	var g Git
-	args := docli.Args()
-	args.Bind(&g)
+	docli.Args.Bind(&g)
 }
