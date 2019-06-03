@@ -1,10 +1,10 @@
-package text
+package docstring
 
 import "github.com/celicoo/docli/internal/reger"
 
 // Parse returns the AST of the given doc string.
-func Parse(doc string) (t Text) {
-	if err := reger.Build(&t).ParseString(doc, &t); err != nil {
+func Parse(s string) (d docstring) {
+	if err := reger.Build(&d).ParseString(s, &d); err != nil {
 		panic(err)
 	}
 	return

@@ -1,8 +1,16 @@
 package docli
 
-import "github.com/celicoo/docli/pkg/args"
+import (
+	"os"
+	"strings"
+)
 
-// Args returns the AST of the command-line arguments.
-func Args() args.Args {
-	return args.Parse()
+// Args holds the command-line arguments, starting after the program name.
+var Args args
+
+func init() {
+	// Concatenate the command-line arguments using the U+001F character as
+	// separator.
+	s := strings.Join(os.Args[1:], "\u0009")
+	Args.feed(s)
 }

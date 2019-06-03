@@ -1,8 +1,6 @@
-package args
+package docli
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type InvalidArgumentError struct {
 	Argument string

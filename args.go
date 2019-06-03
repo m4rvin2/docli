@@ -1,31 +1,32 @@
-package args
+package docli
 
 import (
 	"fmt"
 	"reflect"
 
-	"github.com/celicoo/docli/internal/text"
+	"github.com/celicoo/docli/internal/docstring"
+	"github.com/celicoo/docli/internal/reger"
 )
 
-// Args is both used as the grammar and the tree representation of the abstract
+// args is both used as the grammar and the tree representation of the abstract
 // syntactic structure of the command-line arguments.
-type Args struct {
-	Arguments []Argument `(@@|`
+type args struct {
+	Arguments []argument `(@@|`
 	_         string     `Pun|Sym|Oth|'\u0009')*`
 }
 
-type Argument struct {
+type argument struct {
 	Identifier string `@('-'|Let|Num)+`
-	Value      Value  `@@?`
+	Value      value  `@@?`
 }
 
-type Value struct {
+type value struct {
 	Assignment string `@'='`
 	String     string `@(Let|Num|Pun|Sym|Sep)+`
 }
 
 // Bind binds the fields of the given struct with matching argument values.
-func (a *Args) Bind(c Command) {
+func (a *args) Bind(c command) {
 	v := reflect.ValueOf(c)
 	// Validate that given parameter is a pointer.
 	if v.Kind() != reflect.Ptr {
@@ -33,7 +34,7 @@ func (a *Args) Bind(c Command) {
 		panic(err)
 	}
 	e := v.Elem()
-	t := text.Parse(c.Doc())
+	d := docstring.Parse(c.Doc())
 arguments:
 	for i := range a.Arguments { // slight faster.
 		n := a.Arguments[i].Identifier
@@ -41,12 +42,12 @@ arguments:
 			c.Help()
 			return
 		}
-		for _, identifier := range t.Identifiers(n) {
+		for _, identifier := range d.Identifiers(n) {
 			f := e.FieldByName(identifier.NameAsCamelCase())
 			// Match found.
 			if f.CanSet() {
 				// Check if the field implements the Command interface.
-				t, ok := f.Addr().Interface().(Command)
+				t, ok := f.Addr().Interface().(command)
 				if ok {
 					// If it does implement the Command interface, delete the current
 					// argument from a.Arguments to prevent returning an
@@ -70,4 +71,10 @@ arguments:
 		return
 	}
 	c.Run()
+}
+
+func (a *args) feed(s string) {
+	if err := reger.Build(a).ParseString(s, a); err != nil {
+		panic(err)
+	}
 }
