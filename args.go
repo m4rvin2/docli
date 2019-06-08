@@ -5,7 +5,6 @@ import (
 	"reflect"
 
 	"github.com/celicoo/docli/internal/docstring"
-	"github.com/celicoo/docli/internal/reger"
 )
 
 // args is both used as the grammar and the tree representation of the abstract
@@ -71,10 +70,4 @@ arguments:
 		return
 	}
 	c.Run()
-}
-
-func (a *args) feed(s string) {
-	if err := reger.Build(a).ParseString(s, a); err != nil {
-		panic(err)
-	}
 }

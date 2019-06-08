@@ -43,5 +43,6 @@ func (g *Git) Error(err error) {
 
 func Execute() {
 	var g Git
-	docli.Args.Bind(&g)
+	args := docli.Args()
+	args.Bind(&g)
 }

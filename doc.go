@@ -3,3 +3,6 @@
 // move on to the reason why you're making the app in the first place.
 // Docli is 100% inspired on docopt.
 package docli
+
+// Version is the docli version.
+var Version = "2.0.0"
