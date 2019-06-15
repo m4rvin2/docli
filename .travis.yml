@@ -22,3 +22,4 @@ install:
 script:
   - test -z "$(go fmt ./...)"
   - godog -f progress
+  - cd internal/docstring && godog -f progress
