@@ -5,8 +5,7 @@
 language: go
 
 go:
-    - 1.9
-    - 1.11
+    - 1.12
 
 matrix:
     fast_finish: true
