@@ -7,8 +7,6 @@ import (
 	"github.com/celicoo/docli/internal/reger"
 )
 
-// var errUnexpectedParserError = errors.New()
-
 // Args returns the command-line arguments, starting after the program name.
 func Args() (a args) {
 	// Concatenate the command-line arguments using the U+001F character as
