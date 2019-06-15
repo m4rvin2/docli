@@ -11,6 +11,12 @@ go:
 matrix:
     fast_finish: true
 
+before_install:
+    - go get github.com/DATA-DOG/godog/cmd/godog
+
 install:
     - go get -d -v ./... && go build -v ./...
 
+script:
+  - test -z "$(go fmt ./...)"
+  - godog -f progress
