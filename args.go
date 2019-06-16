@@ -55,10 +55,18 @@ arguments:
 					a.Bind(t)
 					return
 				}
-				if f.Kind() == reflect.Bool {
+				k := f.Kind()
+				if k == reflect.Bool {
 					f.SetBool(true)
 				} else {
-					fmt.Sscan(a.Arguments[i].Value.String, f.Addr().Interface())
+					s := a.Arguments[i].Value.String
+					// If the type of the field is string, use SetString to prevent losing
+					// information that otherwise could happen with Sscan.
+					if k == reflect.String {
+						f.SetString(s)
+					} else {
+						fmt.Sscan(s, f.Addr().Interface())
+					}
 				}
 			} else {
 				continue
