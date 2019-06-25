@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://docli.dev/docs/feedback/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://docli.dev/docs/installation/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://docli.dev/docs/license/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://docli.dev/docs/tutorial/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://docli.dev/docs/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://docli.dev/</loc>
+    <lastmod>2019-03-20T15:39:19+01:00</lastmod>
+  </url>
+  
+</urlset>

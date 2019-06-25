@@ -1,16 +1,17 @@
 package docli
 
 import (
-	"github.com/celicoo/docli/pkg/args"
-	"github.com/celicoo/docli/pkg/text"
+	"os"
+	"strings"
+
+	"github.com/celicoo/docli/internal/reger"
 )
 
-// Parse parses the command-line arguments based on the interface described in
-// doc string.
-func Parse(doc string) (args.Args, error) {
-	t, err := text.Parse(doc)
-	if err != nil {
-		return args.Args{}, err
-	}
-	return args.Parse(t)
+// Args returns the command-line arguments, starting after the program name.
+func Args() (a args) {
+	// Concatenate the command-line arguments using the U+001F character as
+	// separator.
+	s := strings.Join(os.Args[1:], "\u0009")
+	reger.Build(&a).ParseString(s, &a)
+	return
 }
