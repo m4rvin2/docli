@@ -42,12 +42,12 @@ type Clone struct {
 }
 
 func (c *Clone) Doc() string {
-	return `usage: git clone [<options>] --repository=<url> --directory=<directory>
+	return `usage: git clone [<arguments>] --repository=<url> --directory=<directory>
 
-options:
+arguments:
 
-  -r, --repository
-  -d, --directory
+  -r, --repository                 repository to clone
+  -d, --directory                  path to directory
   -v, --verbose                    be more verbose
   -q, --quiet                      be more quiet
   --progress                       force progress reporting
