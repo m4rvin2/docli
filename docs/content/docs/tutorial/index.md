@@ -1,195 +1,309 @@
+---
+title: Tutorial
+---
+
 # Tutorial
 
-Once you've [installed]({{< relref "/docs/installation" >}}) Docli via `go get`, you'll be able to import it on your new project. Go ahead and create a file called `git.go` and paste the following content inside:
+Welcome to the Docli Tutorial! This tutorial is meant to introduce Docli concepts. If you get stuck at any point during the tutorial, feel free to [download](https://github.com/celicoo/docli/tree/master/examples/git) a working example of the completed CLI app.
 
-{{< highlight go >}}
+## Confirming that Docli is installed
+
+Before starting the tutorial, let's make sure that you have Docli installed. Go ahead and create a `main.go` file and paste the following content inside:
+
+{{<highlight go>}}
 package main
 
 import (
-	"log"
-
 	"github.com/alecthomas/repr"
 	"github.com/celicoo/docli"
 )
 
-var doc = ``
-
 func main() {
-	args, err := docli.Parse(doc)
-	if err != nil {
-		log.Fatal(err)
-	}
-	repr.Println(args)
+  args := docli.Args()
+  repr.Println(args)
 }
-{{< /highlight >}}
+{{</highlight>}}
 
-Let’s build and run it to make sure everything is working correctly:
+Now build and run it:
 
-{{< highlight text >}}
+{{<highlight text>}}
 $ go build
-$ ./git
+$ ./main
 
-args.Args{
-  text: text.Text{
-  },
+docli.args{
 }
-{{< /highlight >}}
+{{</highlight>}}
 
-The output is the [Abstract Syntax Structure](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of the doc string. Right now it’s empty because the doc string is empty, or in other words, the command-line interface doesn't exist.
+**Note**: the output is the [Abstract Syntax Structure](https://en.wikipedia.org/wiki/Abstract_syntax_tree) of the command-line arguments, and it's empty because you didn't pass any arguments. If you run it again passing arguments you should see a different output. 
 
-## Write a command-line interface
+## Creating a new CLI app
 
-We'll write a simplified version of the `git` CLI. To do that, the first step is to define the argument identifiers. The pattern is simple:
+### Directory structure
+
+If you like [Cobra](http://cobra.dev), you'll feel at home about this. While you're welcome to provide your own organization, typically a Docli-based app will follow the following directory structure:
 
 {{< highlight text >}}
-<indent with spaces or tabs><identifier [, <identifier>...]>
+▾ app/
+  ▾ cmd/
+    root.go
+  main.go
 {{< /highlight >}}
 
-The identifiers can have letters of any language, numbers and dashes. Unlike other libraries, Docli doesn't enforce the `short-long` convention.
+Go ahead and create the above structure, but instead of `app`, let's name the root directory to `git`.
 
-**Note:** anything that doesn't match the pattern above is ignored.
+#### **app/**
 
-Now that you know how to define argument identifiers, let's go back to the `git.go` file and replace the `doc` variable of our command-line interface with:
+This is the root of our app. The `main.go` file goes into this directory, and it's responsible for calling the function that initializes Docli:
 
-{{< highlight go >}}
-var doc = `
-Simple git
-
-Usage: git [command]
-
-Commands:
-     init         create an empty Git repository or reinitialize an existing one
-  h, help, 助けて  help message
-`
-{{< /highlight >}}
-
-By looking at our command-line interface, can you guess how many **arguments** does it have? Try to make a guess before moving forward.
-
-If you thought **two** you got it! Let's build and rerun it to confirm:
-
-{{< highlight text >}}
-$ go build
-$ ./git
-
-args.Args{
-  text: text.Text{
-    Arguments: []text.Argument{
-      text.Argument{
-        Indentation: "\n     ",
-        Identifiers: []text.Identifier{
-          text.Identifier{
-            Name: "init",
-          },
-        },
-      },
-      text.Argument{
-        Indentation: "\n  ",
-        Identifiers: []text.Identifier{
-          text.Identifier{
-            Name: "h",
-            Separator: ", ",
-          },
-          text.Identifier{
-            Name: "help",
-            Separator: ", ",
-          },
-          text.Identifier{
-            Name: "助けて",
-          },
-        },
-      },
-    },
-  },
-}
-{{< /highlight >}}
-
-The **h**, **help**, and **助けて** are identifiers of the same argument. If you are confused, please go back to the [Write a command-line interface](#write-a-command-line-interface) section.
-
-## Bind struct fields to command-line arguments
-
-Now that we’ve written our command-line interface and verified that Docli correctly parses it, it’s time to write a struct to be bind to the command-line arguments values. To do so, paste the following struct after the doc string:
-
-{{< highlight go >}}
-type Git struct {
-	Init,
-	Help bool
-}
-{{< /highlight >}}
-
-**Note:** you can use **any** primitive type in your struct fields and use embedded structs to separate the categories of your arguments, you'll find examples of the latest in the [examples page](https://github.com/celicoo/docli/tree/master/examples).
-
-Replace the call to `repr.Println(args)` with:
-
-{{< highlight go >}}
-var git Git
-args.Bind(&git)
-if git.Help {
-    fmt.Println(doc)
-}
-{{< /highlight >}}
-
-The final code should be similar to the following:
-
-{{< highlight go >}}
+{{<highlight go>}}
 package main
 
-import (
-	"log"
-
-	"github.com/celicoo/docli"
-)
-
-var doc = `
-Simple git
-
-Usage: git [command]
-
-Commands:
-     init         create an empty Git repository or reinitialize an existing one
-  h, help, 助けて  help message
-`
-
-type Git struct {
-	Init,
-	Help bool
-}
+import "<path>/git"
 
 func main() {
-	args, err := docli.Parse(doc)
-	if err != nil {
+	cmd.Execute()
+}
+{{</highlight>}}
+
+**Note**: Make sure to replace the `<path>` placeholder.
+
+#### **cmd/**
+
+This is where the commands are stored. The `root.go` is responsible for the logic of the **root command** and the `Execute()` function:
+
+{{<highlight go>}}
+package cmd
+
+const version = "0.0.1"
+
+type Git struct {}
+
+func (g *Git) Doc() string {
+	return ""
+}
+
+func (g *Git) Run() {
+}
+
+func (g *Git) Help() {
+}
+
+func (g *Git) Error(err error) {
+}
+
+func Execute() {
+}
+{{</highlight>}}
+
+The `Git` struct represents the root command in our CLI app and it must implement the [docli.command](/) interface.
+
+### Writing the docstring
+
+Like YAML or Python, the docstring is a line-oriented language that uses indentation to define structure. Lines beginning with either spaces or tabs are used to register arguments and commands (commands are explained a little later in the tutorial). These arguments and commands can have letters of any language, numbers, and dashes. 
+
+Let’s go back to the root.go file and replace the [Doc()](/) method of our Git struct with:
+
+{{<highlight go>}}
+func (g *Git) Doc() string {
+	return `usage: git <command>
+
+commands:
+  c, clone      clone a repository into a new directory
+
+arguments:
+
+  v, --version  print version
+	
+Use "git <command> help" for more information about the <command>.`
+}
+{{</highlight>}}
+
+By convention, dashes are used in front of arguments, but not commands. You can use this convention with Docli, but it's not necessary. 
+
+### Accessing command-line argument values
+
+Now that we’ve registered the arguments and commands in the docstring, we’ll need to define them as fields in the `Git` struct, so we can access their values. Fields that represent arguments will be primitive types and those that represent commands will be user-defined types that implement the [docli.command](/) interface, just like the root command does.
+
+Regardless of how many aliases your arguments or commands have , you'll only need to (and only should) define one field in the struct. We suggest using the longer identifier, but you can use whichever you’d like. 
+
+In our example, we have one command and one argument, and each has two identifiers. Let’s add these to our `Git` struct:
+
+{{<highlight go>}}
+type Git struct {
+	Clone   Clone
+	Version bool
+}
+{{</highlight>}}
+
+For every command, you’ll need to create a file to hold the type that represents the command. In our example the Clone field represents the `clone` command,  so we need to create a file that holds this type. Let's go ahead and create the `clone.go` file inside the `cmd` directory and paste the following code inside:
+
+{{<highlight go>}}
+package cmd
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/alecthomas/repr"
+)
+
+type Clone struct {
+	Repository,
+	Directory string
+	Verbose,
+	Quiet,
+	Progress,
+	NoCheckout,
+	Bare,
+	Mirror,
+	Local,
+	NoHardlinks,
+	Shared bool
+	RecurseSubmodules string
+	Jobs              int
+	Template,
+	Reference,
+	ReferenceIfAble string
+	Dissociate bool
+	Origin,
+	Branch,
+	UploadPack string
+	Depth int
+	ShallowSince,
+	ShallowExclude string
+	SingleBranch,
+	NoTags,
+	ShallowSubmodules bool
+	SeparateGitDir,
+	Config string
+	Ipv4,
+	Ipv6 bool
+	Filter string
+}
+
+func (c *Clone) Doc() string {
+	return `usage: git clone [<arguments>] --repository=<url> --directory=<directory>
+
+arguments:
+
+  -r, --repository                 repository to clone
+  -d, --directory                  path to directory
+  -v, --verbose                    be more verbose
+  -q, --quiet                      be more quiet
+  --progress                       force progress reporting
+  -n, --no-checkout                don't create a checkout
+  --bare                           create a bare repository
+  --mirror                         create a mirror repository (implies bare)
+  -l, --local                      to clone from a local repository
+  --no-hardlinks                   don't use local hardlinks, always copy
+  -s, --shared                     setup as shared repository
+  --recurse-submodules=<pathspec>  initialize submodules in the clone
+  -j, --jobs=<n>                   number of submodules cloned in parallel
+  --template=<template-directory>  directory from which templates will be used
+  --reference=<repo>               reference repository
+  --reference-if-able=<repo>       reference repository
+  --dissociate                     use --reference only while cloning
+  -o, --origin=<name>              use <name> instead of 'origin' to track upstream
+  -b, --branch=<branch>            checkout <branch> instead of the remote's HEAD
+  -u, --upload-pack=<path>         path to git-upload-pack on the remote
+  --depth=<depth>                  create a shallow clone of that depth
+  --shallow-since=<time>           create a shallow clone since a specific time
+  --shallow-exclude=<revision>     deepen history of shallow clone, excluding rev
+  --single-branch                  clone only one branch, HEAD or --branch
+  --no-tags                        don't clone any tags, and make later fetches not to follow them
+  --shallow-submodules             any cloned submodules will be shallow
+  --separate-git-dir=<gitdir>      separate git dir from working tree
+  -c, --config=<key=value>         set config inside the new repository
+  -4, --ipv4                       use IPv4 addresses only
+  -6, --ipv6                       use IPv6 addresses only
+  --filter=<args>                  object filtering
+`
+}
+
+func (c *Clone) Run() {
+	repr.Println(c)
+}
+
+func (c *Clone) Help() {
+	fmt.Println(c.Doc())
+}
+
+func (c *Clone) Error(err error) {
+	log.Fatal(err)
+}
+{{</highlight>}}
+
+In this tutorial, we won’t go into detail about the logic of the Clone command, but it should be straightforward to understand what it does. 
+
+### Writing the Methods’ Logic
+
+A specific method will run when a certain condition is met.
+
+#### **Error method**
+
+The Error method will run when the user passes an argument or command that is not registered in the docstring. Usually, you'll just print the error message to `stderr` and exit the program. In our example, we'll ignore invalid arguments and force the Run method to run, otherwise we'll print the error message to `stderr` and exit the program:
+
+{{<highlight go>}}
+func (g *Git) Error(err error) {
+	switch err.(type) {
+	case *docli.InvalidArgumentError:
+		// Ignore InvalidArgumentError.
+		g.Run()
+	default:
 		log.Fatal(err)
 	}
-    var git Git
-    args.Bind(&git)
-    if git.Help {
-        fmt.Println(doc)
-    }
 }
-{{< /highlight >}}
+{{</highlight>}}
 
-If we now build and run it:
+#### **Help method**
 
-{{< highlight text >}}
+The Help method will run when the user passes the `help` argument. Usually, you'll just print the docstring to `stdout`; that’s what we’ll do in our example:
+
+{{<highlight go>}}
+func (g *Git) Help() {
+	fmt.Println(g.Doc())
+}
+{{</highlight>}}
+
+#### **Run method**
+
+The Run method will run when no error is found and an argument other than `help` is called. In our example we'll print the version if the `--version` (or `-v`) command-line argument is passed, otherwise we'll just print "Hello, world!":
+
+{{<highlight go>}}
+func (g *Git) Run() {
+	if g.Version {
+		fmt.Println(version)
+		return
+	}
+	fmt.Println("Hello, world!")
+}
+{{</highlight>}}
+
+### Initializing Docli
+
+We created a CLI app with one command and one argument, but if you try to execute it, it won't run because there is one piece missing: initializing Docli. Let's do that by replacing the empty `Execute` function that is inside the `root.go` file with:
+
+{{<highlight go>}}
+func Execute() {
+	var g Git
+	args := docli.Args()
+	args.Bind(&g)
+}
+{{</highlight>}}
+
+### Testing the CLI app
+
+The very last step is to make sure it's actually working. To do that we need to build and run it:
+
+{{<highlight text>}}
 $ go build
-$ ./git 助けて
+$ ./git
 
-Simple git
+Hello, world!
+{{</highlight>}}
 
-Usage: git [command]
+Unlike other packages, Docli doesn't allow values to be assigned to arguments without using the `=` operator, you will need to use the `=` operator, otherwise the internal parser will think you're passing an argument, and the [Error](/) method of the struct that represents the command that you’re executing will be called. The `clone` command was added to help you understand this, so go ahead and play with it.
 
-Commands:
-     init         create an empty Git repository or reinitialize an existing one
-  h, help, 助けて  help message
-{{< /highlight >}}
+Congratulations! You’ve completed the tutorial. Thank you for reading and I hope you enjoyed it.
 
-Boolean arguments are special because they don't require explicitly assignment like arguments of other types.
-
-For example, if we decide to add an argument `--author` of type `string`, the correct way to bind a value to it would be:
-
-{{< highlight text >}}
-$ ./git init --author=Docli
-{{< /highlight >}}
-
-You've completed the tutorial! Thank you for reading and I hope you enjoyed it.
-
-If you have any question, please don't hesitate to [open an issue](https://github.com/celicoo/docli/issues).
+If you have any question, please don’t hesitate to [open an issue](https://github.com/celicoo/docli/issues).

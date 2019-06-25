@@ -4,19 +4,22 @@
 
 language: go
 
+env:
+  - GO111MODULE=on
+
 go:
-    - 1.9
-    - 1.11
+    - 1.12
 
 matrix:
     fast_finish: true
 
 before_install:
-    - go get golang.org/x/tools/cmd/cover
-    - go get github.com/mattn/goveralls
+    - go get github.com/DATA-DOG/godog/cmd/godog
 
 install:
     - go get -d -v ./... && go build -v ./...
 
 script:
-    - go test -v ./...
+  - test -z "$(go fmt ./...)"
+  - godog -f progress
+  - cd internal/docstring && godog -f progress
