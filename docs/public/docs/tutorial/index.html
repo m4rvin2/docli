@@ -1,0 +1,303 @@
+<!DOCTYPE html><html>
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docs/Tutorial/Index.md | Docli</title>
+
+<link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
+<link rel="stylesheet" href="/normalize.min.css">
+
+<link rel="stylesheet" href="/book.min.29d743ffb6d61ecbfc9bb21b7eab17d63b577d4bd547c3f095addb1c793ab1b1.css">
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav role="navigation">
+<a href="https://docli.dev">
+  <img alt="Docli Logo" src="/avatar.png" width="100%" />
+</a>
+
+
+
+
+    
+  
+  
+
+  <style>
+  nav ul a[href$="\2f docs\2ftutorial\2f "] {
+      color: #004ed0;
+  }
+  </style><ul>
+<li><a href="/">Introduction</a></li>
+<li><a href="/docs/installation/">Installation</a></li>
+<li><a href="/docs/tutorial/">Tutorial</a></li>
+<li><a href="https://github.com/celicoo/docli/tree/master/examples">Examples</a></li>
+<li><a href="/docs/feedback/">Feedback</a></li>
+<li><a href="/docs/license/">License</a></li>
+</ul>
+
+
+
+
+<a class="github-button" href="https://github.com/celicoo/docli" data-icon="octicon-star" aria-label="Star celicoo/docli on GitHub">Star</a>
+<a class="github-button" href="https://github.com/celicoo/docli/subscription" data-icon="octicon-eye" aria-label="Watch celicoo/docli on GitHub">Watch</a>
+
+</nav>
+    </aside>
+
+    <div class="book-page">
+      <header class="align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" />
+  </label>
+  <strong>Docs/Tutorial/Index.md</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="tutorial">Tutorial</h1>
+
+<p>Once you&rsquo;ve <a href="/docs/installation/">installed</a> Docli via <code>go get</code>, you&rsquo;ll be able to import it on your new project. Go ahead and create a file called <code>git.go</code> and paste the following content inside:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;log&#34;</span>
+
+	<span style="color:#e6db74">&#34;github.com/alecthomas/repr&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/celicoo/docli&#34;</span>
+)
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doc</span> = <span style="color:#e6db74">``</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">args</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">docli</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">doc</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+	}
+	<span style="color:#a6e22e">repr</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">args</span>)
+}</code></pre></div>
+
+<p>Let’s build and run it to make sure everything is working correctly:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
+$ ./git
+
+args.Args{
+  text: text.Text{
+  },
+}</code></pre></div>
+
+<p>The output is the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Structure</a> of the doc string. Right now it’s empty because the doc string is empty, or in other words, the command-line interface doesn&rsquo;t exist.</p>
+
+<h2 id="write-a-command-line-interface">Write a command-line interface</h2>
+
+<p>We&rsquo;ll write a simplified version of the <code>git</code> CLI. To do that, the first step is to define the argument identifiers. The pattern is simple:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;indent with spaces or tabs&gt;&lt;identifier [, &lt;identifier&gt;...]&gt;</code></pre></div>
+
+<p>The identifiers can have letters of any language, numbers and dashes. Unlike other libraries, Docli doesn&rsquo;t enforce the <code>short-long</code> convention.</p>
+
+<p><strong>Note:</strong> anything that doesn&rsquo;t match the pattern above is ignored.</p>
+
+<p>Now that you know how to define argument identifiers, let&rsquo;s go back to the <code>git.go</code> file and replace the <code>doc</code> variable of our command-line interface with:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doc</span> = <span style="color:#e6db74">`
+</span><span style="color:#e6db74">Simple git
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Usage: git [command]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Commands:
+</span><span style="color:#e6db74">     init         create an empty Git repository or reinitialize an existing one
+</span><span style="color:#e6db74">  h, help, 助けて  help message
+</span><span style="color:#e6db74">`</span></code></pre></div>
+
+<p>By looking at our command-line interface, can you guess how many <strong>arguments</strong> does it have? Try to make a guess before moving forward.</p>
+
+<p>If you thought <strong>two</strong> you got it! Let&rsquo;s build and rerun it to confirm:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
+$ ./git
+
+args.Args{
+  text: text.Text{
+    Arguments: []text.Argument{
+      text.Argument{
+        Indentation: &#34;\n     &#34;,
+        Identifiers: []text.Identifier{
+          text.Identifier{
+            Name: &#34;init&#34;,
+          },
+        },
+      },
+      text.Argument{
+        Indentation: &#34;\n  &#34;,
+        Identifiers: []text.Identifier{
+          text.Identifier{
+            Name: &#34;h&#34;,
+            Separator: &#34;, &#34;,
+          },
+          text.Identifier{
+            Name: &#34;help&#34;,
+            Separator: &#34;, &#34;,
+          },
+          text.Identifier{
+            Name: &#34;助けて&#34;,
+          },
+        },
+      },
+    },
+  },
+}</code></pre></div>
+
+<p>The <strong>h</strong>, <strong>help</strong>, and <strong>助けて</strong> are identifiers of the same argument. If you are confused, please go back to the <a href="#write-a-command-line-interface">Write a command-line interface</a> section.</p>
+
+<h2 id="bind-struct-fields-to-command-line-arguments">Bind struct fields to command-line arguments</h2>
+
+<p>Now that we’ve written our command-line interface and verified that Docli correctly parses it, it’s time to write a struct to be bind to the command-line arguments values. To do so, paste the following struct after the doc string:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Git</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Init</span>,
+	<span style="color:#a6e22e">Help</span> <span style="color:#66d9ef">bool</span>
+}</code></pre></div>
+
+<p><strong>Note:</strong> you can use <strong>any</strong> primitive type in your struct fields and use embedded structs to separate the categories of your arguments, you&rsquo;ll find examples of the latest in the <a href="https://github.com/celicoo/docli/tree/master/examples">examples page</a>.</p>
+
+<p>Replace the call to <code>repr.Println(args)</code> with:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">Git</span>
+<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Bind</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">git</span>)
+<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">git</span>.<span style="color:#a6e22e">Help</span> {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">doc</span>)
+}</code></pre></div>
+
+<p>The final code should be similar to the following:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;log&#34;</span>
+
+	<span style="color:#e6db74">&#34;github.com/celicoo/docli&#34;</span>
+)
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doc</span> = <span style="color:#e6db74">`
+</span><span style="color:#e6db74">Simple git
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Usage: git [command]
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Commands:
+</span><span style="color:#e6db74">     init         create an empty Git repository or reinitialize an existing one
+</span><span style="color:#e6db74">  h, help, 助けて  help message
+</span><span style="color:#e6db74">`</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Git</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Init</span>,
+	<span style="color:#a6e22e">Help</span> <span style="color:#66d9ef">bool</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">args</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">docli</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">doc</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+	}
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">Git</span>
+    <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Bind</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">git</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">git</span>.<span style="color:#a6e22e">Help</span> {
+        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">doc</span>)
+    }
+}</code></pre></div>
+
+<p>If we now build and run it:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
+$ ./git 助けて
+
+Simple git
+
+Usage: git [command]
+
+Commands:
+     init         create an empty Git repository or reinitialize an existing one
+  h, help, 助けて  help message</code></pre></div>
+
+<p>Boolean arguments are special because they don&rsquo;t require explicitly assignment like arguments of other types.</p>
+
+<p>For example, if we decide to add an argument <code>--author</code> of type <code>string</code>, the correct way to bind a value to it would be:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ./git init --author=Docli</code></pre></div>
+
+<p>You&rsquo;ve completed the tutorial! Thank you for reading and I hope you enjoyed it.</p>
+
+<p>If you have any question, please don&rsquo;t hesitate to <a href="https://github.com/celicoo/docli/issues">open an issue</a>.</p>
+</article>
+
+      
+<div class="align-center book-git-footer justify-between">
+  
+  <div>
+    <a href="https://github.com/celicoo/docli/commit/a2ad37a6a8d2d3ca5f602c0a6c27c7085d39c40a" title='Last modified March 14, 2019 23:58 -03 by Marcelo Franco Filipe Alves' target="_blank" rel="noopener">
+      <img src="/svg/code-merge.svg" /> Last Modified Mar 14, 2019
+    </a>
+  </div>
+  
+  
+  <div>
+    <a href="https://github.com/celicoo/docli/edit/master/docs/content/docs/tutorial/index.md" target="_blank" rel="noopener">
+      <img src="/svg/code-fork.svg" /> Edit this page
+    </a>
+  </div>
+  
+</div>
+
+
+    </div>
+
+    
+  
+  
+  <aside class="book-toc fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#tutorial">Tutorial</a>
+<ul>
+<li><a href="#write-a-command-line-interface">Write a command-line interface</a></li>
+<li><a href="#bind-struct-fields-to-command-line-arguments">Bind struct fields to command-line arguments</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-135349489-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</body>
+
+</html>
