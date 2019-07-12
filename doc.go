@@ -5,4 +5,4 @@
 package docli
 
 // Version is the docli version.
-var Version = "2.0.0"
+var Version = "2.1.0"
