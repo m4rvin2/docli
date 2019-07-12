@@ -246,7 +246,7 @@ The Error method will run when the user passes an argument or command that is no
 {{<highlight go>}}
 func (g *Git) Error(err error) {
 	switch err.(type) {
-	case *docli.InvalidArgumentError:
+	case *args.InvalidArgumentError:
 		// Ignore InvalidArgumentError.
 		g.Run()
 	default:
@@ -254,6 +254,8 @@ func (g *Git) Error(err error) {
 	}
 }
 {{</highlight>}}
+
+The `InvalidArgumentError` is within the `args` package, so make sure to add `"github.com/celicoo/docli/args"` to the import declarations.
 
 #### **Help method**
 

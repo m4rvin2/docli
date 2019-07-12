@@ -1,31 +1,31 @@
-package docli
+package args
 
 import (
 	"fmt"
 	"reflect"
 
-	"github.com/celicoo/docli/internal/docstring"
+	"github.com/celicoo/docli/pkg/docstring"
 )
 
-// args is both used as the grammar and the tree representation of the abstract
+// Args is both used as the grammar and the tree representation of the abstract
 // syntactic structure of the command-line arguments.
-type args struct {
-	Arguments []argument `(@@|`
+type Args struct {
+	Arguments []Argument `(@@|`
 	_         string     `Pun|Sym|Oth|'\u0009')*`
 }
 
-type argument struct {
+type Argument struct {
 	Identifier string `@('-'|Let|Num)+`
-	Value      value  `@@?`
+	Value      Value  `@@?`
 }
 
-type value struct {
+type Value struct {
 	Assignment string `@'='`
 	String     string `@(Let|Num|Pun|Sym|Sep)+`
 }
 
 // Bind binds the fields of the given struct with matching argument values.
-func (a *args) Bind(c command) {
+func (a *Args) Bind(c command) {
 	v := reflect.ValueOf(c)
 	// Validate that given parameter is a pointer.
 	if v.Kind() != reflect.Ptr {

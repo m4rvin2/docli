@@ -2,24 +2,24 @@ package docstring
 
 import "github.com/iancoleman/strcase"
 
-// docstring is both used as the grammar and the tree representation of the abstract
+// Docstring is both used as the grammar and the tree representation of the abstract
 // syntactic structure of a doc string.
-type docstring struct {
-	Arguments []argument `(@@|`
+type Docstring struct {
+	Arguments []Argument `(@@|`
 	_         string     `Let|Num|Pun|Sym|Sep|Oth)*`
 }
 
-type argument struct {
+type Argument struct {
 	Indentation string       `@('\n' (' '|'\t')+)`
-	Identifiers []identifier `@@+`
+	Identifiers []Identifier `@@+`
 }
 
-type identifier struct {
+type Identifier struct {
 	Name      string `@('-'|Let|Num)+`
 	Separator string `@(',' ' ')?`
 }
 
-func (d *docstring) argument(name string) argument {
+func (d *Docstring) argument(name string) Argument {
 	for _, a := range d.Arguments {
 		for _, i := range a.Identifiers {
 			if i.Name == name {
@@ -27,12 +27,12 @@ func (d *docstring) argument(name string) argument {
 			}
 		}
 	}
-	return argument{}
+	return Argument{}
 }
 
 // Identifiers returns all identifiers of an argument if any of them match the
 // given value.
-func (d *docstring) Identifiers(name string) (identifiers []identifier) {
+func (d *Docstring) Identifiers(name string) (identifiers []Identifier) {
 	a := d.argument(name)
 	for _, i := range a.Identifiers {
 		identifiers = append(identifiers, i)
@@ -42,6 +42,6 @@ func (d *docstring) Identifiers(name string) (identifiers []identifier) {
 
 // NameAsCamelCase returns the identifier's name as camel case.
 // TODO(celicoo): improve this.
-func (i *identifier) NameAsCamelCase() string {
+func (i *Identifier) NameAsCamelCase() string {
 	return strcase.ToCamel(i.Name)
 }
