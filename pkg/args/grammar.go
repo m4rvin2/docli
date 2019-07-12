@@ -2,6 +2,7 @@ package args
 
 import (
 	"fmt"
+	"log"
 	"reflect"
 
 	"github.com/celicoo/docli/pkg/docstring"
@@ -29,8 +30,7 @@ func (a *Args) Bind(c command) {
 	v := reflect.ValueOf(c)
 	// Validate that given parameter is a pointer.
 	if v.Kind() != reflect.Ptr {
-		err := fmt.Errorf("cannot use c (type %[1]v) as type *%[1]v in argument to Bind", v.Type().Name())
-		panic(err)
+		log.Panicf("cannot use c (type %[1]v) as type *%[1]v in argument to Bind", v.Type().Name())
 	}
 	e := v.Elem()
 	d := docstring.Parse(c.Doc())
