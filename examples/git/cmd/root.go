@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/celicoo/docli"
+	"github.com/celicoo/docli/pkg/args"
 )
 
 const version = "0.0.1"
@@ -41,7 +42,7 @@ func (g *Git) Help() {
 
 func (g *Git) Error(err error) {
 	switch err.(type) {
-	case *docli.InvalidArgumentError:
+	case *args.InvalidArgumentError:
 		// Ignore InvalidArgumentError.
 		g.Run()
 	default:
