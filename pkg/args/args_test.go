@@ -1,37 +1,36 @@
-package docstring_test
+package args_test
 
 import (
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/DATA-DOG/godog"
 	"github.com/DATA-DOG/godog/gherkin"
-	. "github.com/celicoo/docli/internal/docstring"
+	. "github.com/celicoo/docli/pkg/args"
 )
 
-var (
-	doc       string
-	docstring interface{}
-)
+var args Args
 
-func theDocstring(d *gherkin.DocString) error {
-	doc = d.Content
+func theArguments(d *gherkin.DocString) error {
+	os.Args = append(os.Args[:1], strings.Split(d.Content, " ")...)
 	return nil
 }
 
 func iCallTheParser() error {
-	docstring = Parse(doc)
+	args = Parse()
 	return nil
 }
 
 func theReturningValueShouldBeEqual(d *gherkin.DocString) error {
-	if d.Content != fmt.Sprint(docstring) {
-		return fmt.Errorf("\nExpected: \"%s\" \nActual: \"%s\"", d.Content, docstring)
+	if d.Content != fmt.Sprint(args) {
+		return fmt.Errorf("\nExpected: \"%s\" \nActual: \"%s\"", d.Content, args)
 	}
 	return nil
 }
 
 func FeatureContext(s *godog.Suite) {
-	s.Step(`^the docstring:$`, theDocstring)
+	s.Step(`^the arguments:$`, theArguments)
 	s.Step(`^I call the parser$`, iCallTheParser)
 	s.Step(`^the returning value should be equal$`, theReturningValueShouldBeEqual)
 }
