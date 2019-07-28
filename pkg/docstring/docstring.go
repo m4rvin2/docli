@@ -1,12 +1,8 @@
 package docstring
 
-import "github.com/celicoo/docli/internal/reger"
-
 // Parse returns the AST of the given doc string.
 func Parse(s string) Docstring {
 	var d Docstring
-	if err := reger.Build(&d).ParseString(s, &d); err != nil {
-		panic(err)
-	}
+	parser.Parse(s, &d)
 	return d
 }

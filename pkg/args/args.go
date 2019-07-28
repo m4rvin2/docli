@@ -3,8 +3,6 @@ package args
 import (
 	"os"
 	"strings"
-
-	"github.com/celicoo/docli/internal/reger"
 )
 
 // args returns the command-line arguments, starting after the program name.
@@ -18,9 +16,6 @@ func args() string {
 // program name.
 func Parse() Args {
 	var a Args
-	// We ignore any errors that might happen when parsing the command-line
-	// arguments. Although this looks odd, it's preferable over the bad error
-	// handling of Participle.
-	reger.Build(&a).ParseString(args(), &a)
+	parser.Parse(args(), &a)
 	return a
 }
