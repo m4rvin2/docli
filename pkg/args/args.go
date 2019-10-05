@@ -16,10 +16,11 @@ func args() string {
 
 // Parse returns the AST of the command-line arguments, starting after the
 // program name.
-func Parse() (a Args) {
+func Parse() Args {
+	var a Args
 	// We ignore any errors that might happen when parsing the command-line
 	// arguments. Although this looks odd, it's preferable over the bad error
 	// handling of Participle.
 	reger.Build(&a).ParseString(args(), &a)
-	return
+	return a
 }
