@@ -8,11 +8,11 @@ type: docs
 [![Build Status](https://travis-ci.org/celicoo/docli.svg?branch=master)](https://travis-ci.org/celicoo/docli)
 [![GoDoc](https://godoc.org/github.com/celicoo/docli?status.svg)](https://godoc.org/github.com/celicoo/docli)
 
-Welcome to the official Docli documentation. This documentation will teach you how to use Docli on your next project.
+Welcome to the official Docli documentation. Here you'll learn how to use Docli for your next project.
 
 ## What is Docli?
 
-Docli is a declarative language for describing command-line interfaces in Go programs. It cuts down the boilerplate to the bare minimum, so you can move on to the reason why you’re making the app in the first place.
+Docli is a declarative language for describing command-line interfaces in Go programs. It cuts down the boilerplate to the bare minimum so you're free to move on to the actual reason you're making the app in the first place.
 
 Docli is 100% inspired by [docopt](https://github.com/docopt/docopt.go).
 
