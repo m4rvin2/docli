@@ -14,7 +14,7 @@
   </p>
 </div>
 
-Docli is a declarative language for describing command-line interfaces in Go programs. It cuts down the boilerplate to the bare minimum, so you can move on to the reason why you’re making the app in the first place.
+Docli is a declarative language for describing command-line interfaces in Go programs. It cuts down the boilerplate to the bare minimum so you're free to move on to the actual reason you're making the app in the first place.
 
 Docli is 100% inspired by [docopt](https://github.com/docopt/docopt.go).
 

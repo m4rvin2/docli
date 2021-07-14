@@ -4,7 +4,7 @@ title: Tutorial
 
 # Tutorial
 
-Welcome to the Docli Tutorial! This tutorial is meant to introduce Docli concepts. If you get stuck at any point during the tutorial, feel free to [download](https://github.com/celicoo/docli/tree/master/examples/git) a working example of the completed CLI app.
+Welcome to the Docli Tutorial! Here you'll be introduced to the key Docli concepts. If you get stuck at any point in the process, feel free to [download](https://github.com/celicoo/docli/tree/master/examples/git) a working example of the completed CLI app.
 
 ## Confirming that Docli is installed
 
@@ -40,7 +40,7 @@ docli.args{
 
 ### Directory structure
 
-If you like [Cobra](http://cobra.dev), you'll feel at home about this. While you're welcome to provide your own organization, typically a Docli-based app will follow the following directory structure:
+If you like [Cobra](http://cobra.dev), you'll feel at home with this. While you're welcome to provide your own organization, typically a Docli-based app will follow the following directory structure:
 
 {{< highlight text >}}
 ▾ app/
@@ -53,7 +53,7 @@ Go ahead and create the above structure, but instead of `app`, let's name the ro
 
 #### **app/**
 
-This is the root of our app. The `main.go` file goes into this directory, and it's responsible for calling the function that initializes Docli:
+This is the root of our app. The `main.go` file goes into this directory and it's responsible for calling the function that initializes Docli:
 
 {{<highlight go>}}
 package main
@@ -135,7 +135,7 @@ type Git struct {
 }
 {{</highlight>}}
 
-For every command, you’ll need to create a file to hold the type that represents the command. In our example the Clone field represents the `clone` command,  so we need to create a file that holds this type. Let's go ahead and create the `clone.go` file inside the `cmd` directory and paste the following code inside:
+For every command, you’ll need to create a file to hold the type that represents the command. In our example, the Clone field represents the `clone` command,  so we need to create a file that holds this type. Let's go ahead and create the `clone.go` file inside the `cmd` directory and paste the following code inside:
 
 {{<highlight go>}}
 package cmd
@@ -233,7 +233,7 @@ func (c *Clone) Error(err error) {
 }
 {{</highlight>}}
 
-In this tutorial, we won’t go into detail about the logic of the Clone command, but it should be straightforward to understand what it does. 
+In this tutorial, we won’t go into detail about the logic of the Clone command because its functionality is pretty straightforward.
 
 ### Writing the Methods’ Logic
 
@@ -283,7 +283,7 @@ func (g *Git) Run() {
 
 ### Initializing Docli
 
-We created a CLI app with one command and one argument, but if you try to execute it, it won't run because there is one piece missing: initializing Docli. Let's do that by replacing the empty `Execute` function that is inside the `root.go` file with:
+We created a CLI app with one command and one argument. But if you try to execute it, it won’t run. There is one piece missing: initializing Docli.
 
 {{<highlight go>}}
 func Execute() {
@@ -295,7 +295,7 @@ func Execute() {
 
 ### Testing the CLI app
 
-The very last step is to make sure it's actually working. To do that we need to build and run it:
+The very last step is to make sure it’s actually working. To do that, we need to build and run it:
 
 {{<highlight text>}}
 $ go build
@@ -304,8 +304,8 @@ $ ./git
 Hello, world!
 {{</highlight>}}
 
-Unlike other packages, Docli doesn't allow values to be assigned to arguments without using the `=` operator, you will need to use the `=` operator, otherwise the internal parser will think you're passing an argument, and the [Error](/) method of the struct that represents the command that you’re executing will be called. The `clone` command was added to help you understand this, so go ahead and play with it.
+Unlike other packages, Docli doesn't allow values to be assigned to arguments without using the `=` operator. You need to use the `=` operator, otherwise the internal parser will think you’re passing an argument and, as a result, the `Error` method of the struct that represents the command that you're executing will be called. The `clone` command was added to help you understand this, so go ahead and play with it.
 
-Congratulations! You’ve completed the tutorial. Thank you for reading and I hope you enjoyed it.
+Congratulations! You’ve completed the tutorial. Thank you for reading, and I hope you enjoyed it.
 
 If you have any question, please don’t hesitate to [open an issue](https://github.com/celicoo/docli/issues).

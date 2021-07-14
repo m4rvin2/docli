@@ -4,7 +4,7 @@ title: Unsupported features
 
 # Unsupported features
 
-Right now Docli doesn't support the following features:
+Right now, Docli doesn't support the following features:
 
 * Bash autocomplete
 * Default values
@@ -12,4 +12,4 @@ Right now Docli doesn't support the following features:
 * Intelligent suggestions
 * Positional arguments
 
-I recommend you to check out [alternative libraries](https://github.com/avelino/awesome-go#command-line) if you absolutely need one of those features.
+If you absolutely need either one of those features, we recommend these [alternative libraries](https://github.com/avelino/awesome-go#command-line).
