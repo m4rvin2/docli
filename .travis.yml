@@ -1,25 +1,27 @@
-# Travis CI (http://travis-ci.org/) is a continuous integration
-# service for open source projects. This file configures it
-# to run unit tests for docli.
-
 language: go
 
 env:
   - GO111MODULE=on
 
 go:
-    - 1.12
+  - 1.12.x
+
+git:
+  depth: 1
 
 matrix:
-    fast_finish: true
+  fast_finish: true
 
 before_install:
-    - go get github.com/DATA-DOG/godog/cmd/godog
+  - go get github.com/mgechev/revive
 
 install:
-    - go get -d -v ./... && go build -v ./...
+  - go get -t -v ./...
 
 script:
-  - test -z "$(go fmt ./...)"
-  - cd pkg/args/     && godog -f progress
-  - cd ../docstring/ && godog -f progress
+  - test -z "$(revive -config revive.toml ./...)"
+  - go test -v -race -covermode=atomic -coverprofile=coverage.txt ./...
+  - go vet ./...
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
