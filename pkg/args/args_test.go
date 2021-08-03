@@ -1,36 +1,11 @@
-package args_test
+package args
 
-import (
-	"fmt"
-	"os"
-	"strings"
+import "testing"
 
-	"github.com/DATA-DOG/godog"
-	"github.com/DATA-DOG/godog/gherkin"
-	. "github.com/celicoo/docli/pkg/args"
-)
-
-var args Args
-
-func theArguments(d *gherkin.DocString) error {
-	os.Args = append(os.Args[:1], strings.Split(d.Content, " ")...)
-	return nil
+func Test_args(test *testing.T) {
+	test.SkipNow()
 }
 
-func iCallTheParser() error {
-	args = Parse()
-	return nil
-}
-
-func theReturningValueShouldBeEqual(d *gherkin.DocString) error {
-	if d.Content != fmt.Sprint(args) {
-		return fmt.Errorf("\nExpected: \"%s\" \nActual: \"%s\"", d.Content, args)
-	}
-	return nil
-}
-
-func FeatureContext(s *godog.Suite) {
-	s.Step(`^the arguments:$`, theArguments)
-	s.Step(`^I call the parser$`, iCallTheParser)
-	s.Step(`^the returning value should be equal$`, theReturningValueShouldBeEqual)
+func Test_Parse(test *testing.T) {
+	test.SkipNow()
 }
