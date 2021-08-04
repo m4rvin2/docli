@@ -2,6 +2,7 @@ language: go
 
 env:
   - GO111MODULE=on
+  - PACKAGES=$(go list ./... | grep -v /examples/)
 
 go:
   - 1.12.x
@@ -16,11 +17,11 @@ before_install:
   - go get github.com/mgechev/revive
 
 install:
-  - go get -t -v ./...
+  - go get -t -v $PACKAGES
 
 script:
-  - test -z "$(revive -config revive.toml ./...)"
-  - go test -v -race -covermode=atomic -coverprofile=coverage.txt ./...
+  - test -z "$(revive -config revive.toml $PACKAGES)"
+  - go test -v -race -covermode=atomic -coverprofile=coverage.txt $PACKAGES
   # - go vet ./...
 
 after_success:
