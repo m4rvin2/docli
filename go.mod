@@ -1,4 +1,4 @@
-module github.com/celicoo/docli
+module github.com/celicoo/docli/v2
 
 go 1.12
 
