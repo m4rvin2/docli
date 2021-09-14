@@ -5,7 +5,7 @@ import (
 	"log"
 	"reflect"
 
-	"github.com/celicoo/docli/pkg/docstring"
+	"github.com/celicoo/docli/v2/pkg/docstring"
 )
 
 // Args is both used as the grammar and the tree representation of the abstract

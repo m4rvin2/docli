@@ -1,6 +1,6 @@
 package docstring
 
-import "github.com/celicoo/docli/internal/reger"
+import "github.com/celicoo/docli/v2/internal/reger"
 
 // Parse returns the AST of the given doc string.
 func Parse(s string) Docstring {
