@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/celicoo/docli"
-	"github.com/celicoo/docli/pkg/args"
+	"github.com/celicoo/docli/v2"
+	"github.com/celicoo/docli/v2/pkg/args"
 )
 
 const version = "0.0.1"

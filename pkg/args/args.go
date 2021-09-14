@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/celicoo/docli/internal/reger"
+	"github.com/celicoo/docli/v2/internal/reger"
 )
 
 // args returns the command-line arguments, starting after the program name.
