@@ -1,52 +1,58 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on Docli</title>
     <link>https://docli.dev/docs/</link>
     <description>Recent content in Docs on Docli</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://docli.dev/docs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://docli.dev/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
+      <title>Feedback</title>
       <link>https://docli.dev/docs/feedback/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://docli.dev/docs/feedback/</guid>
-      <description>Feedback Feel free to send me a feedback on Twitter or file an issue. Feature requests and contributions are always welcome.</description>
+      <description>Feedback #  Feel free to send me feedback on Twitter or file an issue. Feature requests and contributions are always welcome.</description>
     </item>
     
     <item>
-      <title></title>
+      <title>Installation</title>
       <link>https://docli.dev/docs/installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://docli.dev/docs/installation/</guid>
-      <description>Installation You can install Docli with a single command using go get, the Go package manager. Type this into your terminal:
-$ go get -u github.com/celicoo/docli Don&amp;rsquo;t have Go installed? Learn how to install Go here.</description>
+      <description>Installation #  You can install Docli with a single command using go get, the Go package manager. Type this into your terminal:
+$ go get -u github.com/celicoo/docli/v2@latest Don&amp;rsquo;t have Go installed? Learn how to install Go here.</description>
     </item>
     
     <item>
-      <title></title>
+      <title>License</title>
       <link>https://docli.dev/docs/license/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://docli.dev/docs/license/</guid>
-      <description>MIT License Copyright &amp;copy; 2018
+      <description>MIT License #  Copyright (c) 2018
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</description>
     </item>
     
     <item>
-      <title></title>
+      <title>Tutorial</title>
       <link>https://docli.dev/docs/tutorial/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://docli.dev/docs/tutorial/</guid>
-      <description>Tutorial Once you&amp;rsquo;ve installed Docli via go get, you&amp;rsquo;ll be able to import it on your new project. Go ahead and create a file called git.go and paste the following content inside:
-package main import ( &amp;#34;log&amp;#34; &amp;#34;github.com/alecthomas/repr&amp;#34; &amp;#34;github.com/celicoo/docli&amp;#34; ) var doc = `` func main() { args, err := docli.Parse(doc) if err != nil { log.Fatal(err) } repr.Println(args) } Let’s build and run it to make sure everything is working correctly:</description>
+      <description>Tutorial #  Welcome to the Docli Tutorial! Here you&amp;rsquo;ll be introduced to the key Docli concepts. If you get stuck at any point in the process, feel free to download a working example of the completed CLI app.
+Confirming that Docli is installed #  Before starting the tutorial, let&amp;rsquo;s make sure that you have Docli installed. Go ahead and create a main.go file and paste the following content inside:</description>
+    </item>
+    
+    <item>
+      <title>Unsupported features</title>
+      <link>https://docli.dev/docs/unsupported-features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docli.dev/docs/unsupported-features/</guid>
+      <description>Unsupported features #  Right now, Docli doesn&amp;rsquo;t support the following features:
+ Bash autocomplete Default values Global arguments Intelligent suggestions Positional arguments  If you absolutely need either one of those features, we recommend these alternative libraries.</description>
     </item>
     
   </channel>

@@ -1,292 +1,23 @@
-<!DOCTYPE html><html>
-
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docs/Tutorial/Index.md | Docli</title>
+<meta name="description" content="Tutorial #  Welcome to the Docli Tutorial! Here you&rsquo;ll be introduced to the key Docli concepts. If you get stuck at any point in the process, feel free to download a working example of the completed CLI app.
+Confirming that Docli is installed #  Before starting the tutorial, let&rsquo;s make sure that you have Docli installed. Go ahead and create a main.go file and paste the following content inside:">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Tutorial" />
+<meta property="og:description" content="Tutorial #  Welcome to the Docli Tutorial! Here you&rsquo;ll be introduced to the key Docli concepts. If you get stuck at any point in the process, feel free to download a working example of the completed CLI app.
+Confirming that Docli is installed #  Before starting the tutorial, let&rsquo;s make sure that you have Docli installed. Go ahead and create a main.go file and paste the following content inside:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://docli.dev/docs/tutorial/" />
+<meta property="article:modified_time" content="2021-07-14T18:46:23-03:00" />
+<title>Tutorial | Docli</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.scss" integrity="" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ccd1416a9f4d5c223125235f4930c17094838c6bbc76296c7b6380ea70d0061f.js" integrity="sha256-zNFBap9NXCIxJSNfSTDBcJSDjGu8dilse2OA6nDQBh8=" crossorigin="anonymous"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Oxygen|Oxygen+Mono:300,400,700" rel="stylesheet">
-<link rel="stylesheet" href="/normalize.min.css">
-
-<link rel="stylesheet" href="/book.min.29d743ffb6d61ecbfc9bb21b7eab17d63b577d4bd547c3f095addb1c793ab1b1.css">
-
-<!--
-Made with Book Theme
-https://github.com/alex-shpak/hugo-book
--->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-</head>
-
-<body>
-  <input type="checkbox" style="display: none" id="menu-control" />
-  <main class="flex container">
-
-    <aside class="book-menu fixed">
-      <nav role="navigation">
-<a href="https://docli.dev">
-  <img alt="Docli Logo" src="/avatar.png" width="100%" />
-</a>
-
-
-
-
-    
-  
-  
-
-  <style>
-  nav ul a[href$="\2f docs\2ftutorial\2f "] {
-      color: #004ed0;
-  }
-  </style><ul>
-<li><a href="/">Introduction</a></li>
-<li><a href="/docs/installation/">Installation</a></li>
-<li><a href="/docs/tutorial/">Tutorial</a></li>
-<li><a href="https://github.com/celicoo/docli/tree/master/examples">Examples</a></li>
-<li><a href="/docs/feedback/">Feedback</a></li>
-<li><a href="/docs/license/">License</a></li>
-</ul>
-
-
-
-
-<a class="github-button" href="https://github.com/celicoo/docli" data-icon="octicon-star" aria-label="Star celicoo/docli on GitHub">Star</a>
-<a class="github-button" href="https://github.com/celicoo/docli/subscription" data-icon="octicon-eye" aria-label="Watch celicoo/docli on GitHub">Watch</a>
-
-</nav>
-    </aside>
-
-    <div class="book-page">
-      <header class="align-center justify-between book-header">
-  <label for="menu-control">
-    <img src="/svg/menu.svg" />
-  </label>
-  <strong>Docs/Tutorial/Index.md</strong>
-</header>
-
-      
-<article class="markdown">
-
-<h1 id="tutorial">Tutorial</h1>
-
-<p>Once you&rsquo;ve <a href="/docs/installation/">installed</a> Docli via <code>go get</code>, you&rsquo;ll be able to import it on your new project. Go ahead and create a file called <code>git.go</code> and paste the following content inside:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;log&#34;</span>
-
-	<span style="color:#e6db74">&#34;github.com/alecthomas/repr&#34;</span>
-	<span style="color:#e6db74">&#34;github.com/celicoo/docli&#34;</span>
-)
-
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doc</span> = <span style="color:#e6db74">``</span>
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">args</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">docli</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">doc</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">repr</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">args</span>)
-}</code></pre></div>
-
-<p>Let’s build and run it to make sure everything is working correctly:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
-$ ./git
-
-args.Args{
-  text: text.Text{
-  },
-}</code></pre></div>
-
-<p>The output is the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Structure</a> of the doc string. Right now it’s empty because the doc string is empty, or in other words, the command-line interface doesn&rsquo;t exist.</p>
-
-<h2 id="write-a-command-line-interface">Write a command-line interface</h2>
-
-<p>We&rsquo;ll write a simplified version of the <code>git</code> CLI. To do that, the first step is to define the argument identifiers. The pattern is simple:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&lt;indent with spaces or tabs&gt;&lt;identifier [, &lt;identifier&gt;...]&gt;</code></pre></div>
-
-<p>The identifiers can have letters of any language, numbers and dashes. Unlike other libraries, Docli doesn&rsquo;t enforce the <code>short-long</code> convention.</p>
-
-<p><strong>Note:</strong> anything that doesn&rsquo;t match the pattern above is ignored.</p>
-
-<p>Now that you know how to define argument identifiers, let&rsquo;s go back to the <code>git.go</code> file and replace the <code>doc</code> variable of our command-line interface with:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doc</span> = <span style="color:#e6db74">`
-</span><span style="color:#e6db74">Simple git
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">Usage: git [command]
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">Commands:
-</span><span style="color:#e6db74">     init         create an empty Git repository or reinitialize an existing one
-</span><span style="color:#e6db74">  h, help, 助けて  help message
-</span><span style="color:#e6db74">`</span></code></pre></div>
-
-<p>By looking at our command-line interface, can you guess how many <strong>arguments</strong> does it have? Try to make a guess before moving forward.</p>
-
-<p>If you thought <strong>two</strong> you got it! Let&rsquo;s build and rerun it to confirm:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
-$ ./git
-
-args.Args{
-  text: text.Text{
-    Arguments: []text.Argument{
-      text.Argument{
-        Indentation: &#34;\n     &#34;,
-        Identifiers: []text.Identifier{
-          text.Identifier{
-            Name: &#34;init&#34;,
-          },
-        },
-      },
-      text.Argument{
-        Indentation: &#34;\n  &#34;,
-        Identifiers: []text.Identifier{
-          text.Identifier{
-            Name: &#34;h&#34;,
-            Separator: &#34;, &#34;,
-          },
-          text.Identifier{
-            Name: &#34;help&#34;,
-            Separator: &#34;, &#34;,
-          },
-          text.Identifier{
-            Name: &#34;助けて&#34;,
-          },
-        },
-      },
-    },
-  },
-}</code></pre></div>
-
-<p>The <strong>h</strong>, <strong>help</strong>, and <strong>助けて</strong> are identifiers of the same argument. If you are confused, please go back to the <a href="#write-a-command-line-interface">Write a command-line interface</a> section.</p>
-
-<h2 id="bind-struct-fields-to-command-line-arguments">Bind struct fields to command-line arguments</h2>
-
-<p>Now that we’ve written our command-line interface and verified that Docli correctly parses it, it’s time to write a struct to be bind to the command-line arguments values. To do so, paste the following struct after the doc string:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Git</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Init</span>,
-	<span style="color:#a6e22e">Help</span> <span style="color:#66d9ef">bool</span>
-}</code></pre></div>
-
-<p><strong>Note:</strong> you can use <strong>any</strong> primitive type in your struct fields and use embedded structs to separate the categories of your arguments, you&rsquo;ll find examples of the latest in the <a href="https://github.com/celicoo/docli/tree/master/examples">examples page</a>.</p>
-
-<p>Replace the call to <code>repr.Println(args)</code> with:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">Git</span>
-<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Bind</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">git</span>)
-<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">git</span>.<span style="color:#a6e22e">Help</span> {
-    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">doc</span>)
-}</code></pre></div>
-
-<p>The final code should be similar to the following:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;log&#34;</span>
-
-	<span style="color:#e6db74">&#34;github.com/celicoo/docli&#34;</span>
-)
-
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">doc</span> = <span style="color:#e6db74">`
-</span><span style="color:#e6db74">Simple git
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">Usage: git [command]
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">Commands:
-</span><span style="color:#e6db74">     init         create an empty Git repository or reinitialize an existing one
-</span><span style="color:#e6db74">  h, help, 助けて  help message
-</span><span style="color:#e6db74">`</span>
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Git</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">Init</span>,
-	<span style="color:#a6e22e">Help</span> <span style="color:#66d9ef">bool</span>
-}
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">args</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">docli</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">doc</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
-	}
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">Git</span>
-    <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Bind</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">git</span>)
-    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">git</span>.<span style="color:#a6e22e">Help</span> {
-        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">doc</span>)
-    }
-}</code></pre></div>
-
-<p>If we now build and run it:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
-$ ./git 助けて
-
-Simple git
-
-Usage: git [command]
-
-Commands:
-     init         create an empty Git repository or reinitialize an existing one
-  h, help, 助けて  help message</code></pre></div>
-
-<p>Boolean arguments are special because they don&rsquo;t require explicitly assignment like arguments of other types.</p>
-
-<p>For example, if we decide to add an argument <code>--author</code> of type <code>string</code>, the correct way to bind a value to it would be:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ./git init --author=Docli</code></pre></div>
-
-<p>You&rsquo;ve completed the tutorial! Thank you for reading and I hope you enjoyed it.</p>
-
-<p>If you have any question, please don&rsquo;t hesitate to <a href="https://github.com/celicoo/docli/issues">open an issue</a>.</p>
-</article>
-
-      
-<div class="align-center book-git-footer justify-between">
-  
-  <div>
-    <a href="https://github.com/celicoo/docli/commit/a2ad37a6a8d2d3ca5f602c0a6c27c7085d39c40a" title='Last modified March 14, 2019 23:58 -03 by Marcelo Franco Filipe Alves' target="_blank" rel="noopener">
-      <img src="/svg/code-merge.svg" /> Last Modified Mar 14, 2019
-    </a>
-  </div>
-  
-  
-  <div>
-    <a href="https://github.com/celicoo/docli/edit/master/docs/content/docs/tutorial/index.md" target="_blank" rel="noopener">
-      <img src="/svg/code-fork.svg" /> Edit this page
-    </a>
-  </div>
-  
-</div>
-
-
-    </div>
-
-    
-  
-  
-  <aside class="book-toc fixed">
-    <nav id="TableOfContents">
-<ul>
-<li><a href="#tutorial">Tutorial</a>
-<ul>
-<li><a href="#write-a-command-line-interface">Write a command-line interface</a></li>
-<li><a href="#bind-struct-fields-to-command-line-arguments">Bind struct fields to command-line arguments</a></li>
-</ul></li>
-</ul>
-</nav>
-  </aside>
-
-
-
-  </main>
-
-  
-  
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -297,7 +28,490 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<a href="https://docli.dev">
+  <img alt="Docli Logo" src="/avatar.png" width="100%" />
+</a>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <ul>
+<li><a href="/">Introduction</a></li>
+<li><a href="/docs/installation/">Installation</a></li>
+<li><a href="/docs/tutorial/"class=active>Tutorial</a></li>
+<li><a href="/docs/unsupported-features/">Unsupported Features</a></li>
+<li><a href="https://github.com/celicoo/docli/tree/master/examples">Examples</a></li>
+<li><a href="/docs/feedback/">Feedback</a></li>
+<li><a href="/docs/license/">License</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+<a class="github-button" href="https://github.com/celicoo/docli" data-icon="octicon-star" aria-label="Star celicoo/docli on GitHub">Star</a>
+<a class="github-button" href="https://github.com/celicoo/docli/subscription" data-icon="octicon-eye" aria-label="Watch celicoo/docli on GitHub">Watch</a>
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Tutorial</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#confirming-that-docli-is-installed">Confirming that Docli is installed</a></li>
+    <li><a href="#creating-a-new-cli-app">Creating a new CLI app</a>
+      <ul>
+        <li><a href="#directory-structure">Directory structure</a></li>
+        <li><a href="#writing-the-docstring">Writing the docstring</a></li>
+        <li><a href="#accessing-command-line-argument-values">Accessing command-line argument values</a></li>
+        <li><a href="#writing-the-methods-logic">Writing the Methods’ Logic</a></li>
+        <li><a href="#initializing-docli">Initializing Docli</a></li>
+        <li><a href="#testing-the-cli-app">Testing the CLI app</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="tutorial">
+  Tutorial
+  <a class="anchor" href="#tutorial">#</a>
+</h1>
+<p>Welcome to the Docli Tutorial! Here you&rsquo;ll be introduced to the key Docli concepts. If you get stuck at any point in the process, feel free to <a href="https://github.com/celicoo/docli/tree/master/examples/git">download</a> a working example of the completed CLI app.</p>
+<h2 id="confirming-that-docli-is-installed">
+  Confirming that Docli is installed
+  <a class="anchor" href="#confirming-that-docli-is-installed">#</a>
+</h2>
+<p>Before starting the tutorial, let&rsquo;s make sure that you have Docli installed. Go ahead and create a <code>main.go</code> file and paste the following content inside:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;github.com/alecthomas/repr&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/celicoo/docli&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+  <span style="color:#a6e22e">args</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">docli</span>.<span style="color:#a6e22e">Args</span>()
+  <span style="color:#a6e22e">repr</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">args</span>)
+}
+</code></pre></div>
+<p>Now build and run it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
+$ ./main
+
+docli.args{
+}</code></pre></div>
+<p><strong>Note</strong>: the output is the <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Structure</a> of the command-line arguments, and it&rsquo;s empty because you didn&rsquo;t pass any arguments. If you run it again passing arguments you should see a different output.</p>
+<h2 id="creating-a-new-cli-app">
+  Creating a new CLI app
+  <a class="anchor" href="#creating-a-new-cli-app">#</a>
+</h2>
+<h3 id="directory-structure">
+  Directory structure
+  <a class="anchor" href="#directory-structure">#</a>
+</h3>
+<p>If you like <a href="http://cobra.dev">Cobra</a>, you&rsquo;ll feel at home with this. While you&rsquo;re welcome to provide your own organization, typically a Docli-based app will follow the following directory structure:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">▾ app/
+  ▾ cmd/
+    root.go
+  main.go</code></pre></div>
+<p>Go ahead and create the above structure, but instead of <code>app</code>, let&rsquo;s name the root directory to <code>git</code>.</p>
+<h4 id="app">
+  <strong>app/</strong>
+  <a class="anchor" href="#app">#</a>
+</h4>
+<p>This is the root of our app. The <code>main.go</code> file goes into this directory and it&rsquo;s responsible for calling the function that initializes Docli:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;&lt;path&gt;/git&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">cmd</span>.<span style="color:#a6e22e">Execute</span>()
+}
+</code></pre></div>
+<p><strong>Note</strong>: Make sure to replace the <code>&lt;path&gt;</code> placeholder.</p>
+<h4 id="cmd">
+  <strong>cmd/</strong>
+  <a class="anchor" href="#cmd">#</a>
+</h4>
+<p>This is where the commands are stored. The <code>root.go</code> is responsible for the logic of the <strong>root command</strong> and the <code>Execute()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">cmd</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;0.0.1&#34;</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Git</span> <span style="color:#66d9ef">struct</span> {}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Doc</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Run</span>() {
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Help</span>() {
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Error</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Execute</span>() {
+}
+</code></pre></div>
+<p>The <code>Git</code> struct represents the root command in our CLI app and it must implement the <a href="/">docli.command</a> interface.</p>
+<h3 id="writing-the-docstring">
+  Writing the docstring
+  <a class="anchor" href="#writing-the-docstring">#</a>
+</h3>
+<p>Like YAML or Python, the docstring is a line-oriented language that uses indentation to define structure. Lines beginning with either spaces or tabs are used to register arguments and commands (commands are explained a little later in the tutorial). These arguments and commands can have letters of any language, numbers, and dashes.</p>
+<p>Let’s go back to the root.go file and replace the <a href="/">Doc()</a> method of our Git struct with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Doc</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">`usage: git &lt;command&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">commands:
+</span><span style="color:#e6db74">  c, clone      clone a repository into a new directory
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">arguments:
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  v, --version  print version
+</span><span style="color:#e6db74">	
+</span><span style="color:#e6db74">Use &#34;git &lt;command&gt; help&#34; for more information about the &lt;command&gt;.`</span>
+}
+</code></pre></div>
+<p>By convention, dashes are used in front of arguments, but not commands. You can use this convention with Docli, but it&rsquo;s not necessary.</p>
+<h3 id="accessing-command-line-argument-values">
+  Accessing command-line argument values
+  <a class="anchor" href="#accessing-command-line-argument-values">#</a>
+</h3>
+<p>Now that we’ve registered the arguments and commands in the docstring, we’ll need to define them as fields in the <code>Git</code> struct, so we can access their values. Fields that represent arguments will be primitive types and those that represent commands will be user-defined types that implement the <a href="/">docli.command</a> interface, just like the root command does.</p>
+<p>Regardless of how many aliases your arguments or commands have , you&rsquo;ll only need to (and only should) define one field in the struct. We suggest using the longer identifier, but you can use whichever you’d like.</p>
+<p>In our example, we have one command and one argument, and each has two identifiers. Let’s add these to our <code>Git</code> struct:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Git</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Clone</span>   <span style="color:#a6e22e">Clone</span>
+	<span style="color:#a6e22e">Version</span> <span style="color:#66d9ef">bool</span>
+}
+</code></pre></div>
+<p>For every command, you’ll need to create a file to hold the type that represents the command. In our example, the Clone field represents the <code>clone</code> command,  so we need to create a file that holds this type. Let&rsquo;s go ahead and create the <code>clone.go</code> file inside the <code>cmd</code> directory and paste the following code inside:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">cmd</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;log&#34;</span>
+
+	<span style="color:#e6db74">&#34;github.com/alecthomas/repr&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Clone</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Repository</span>,
+	<span style="color:#a6e22e">Directory</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Verbose</span>,
+	<span style="color:#a6e22e">Quiet</span>,
+	<span style="color:#a6e22e">Progress</span>,
+	<span style="color:#a6e22e">NoCheckout</span>,
+	<span style="color:#a6e22e">Bare</span>,
+	<span style="color:#a6e22e">Mirror</span>,
+	<span style="color:#a6e22e">Local</span>,
+	<span style="color:#a6e22e">NoHardlinks</span>,
+	<span style="color:#a6e22e">Shared</span> <span style="color:#66d9ef">bool</span>
+	<span style="color:#a6e22e">RecurseSubmodules</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Jobs</span>              <span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">Template</span>,
+	<span style="color:#a6e22e">Reference</span>,
+	<span style="color:#a6e22e">ReferenceIfAble</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Dissociate</span> <span style="color:#66d9ef">bool</span>
+	<span style="color:#a6e22e">Origin</span>,
+	<span style="color:#a6e22e">Branch</span>,
+	<span style="color:#a6e22e">UploadPack</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Depth</span> <span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">ShallowSince</span>,
+	<span style="color:#a6e22e">ShallowExclude</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">SingleBranch</span>,
+	<span style="color:#a6e22e">NoTags</span>,
+	<span style="color:#a6e22e">ShallowSubmodules</span> <span style="color:#66d9ef">bool</span>
+	<span style="color:#a6e22e">SeparateGitDir</span>,
+	<span style="color:#a6e22e">Config</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Ipv4</span>,
+	<span style="color:#a6e22e">Ipv6</span> <span style="color:#66d9ef">bool</span>
+	<span style="color:#a6e22e">Filter</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Clone</span>) <span style="color:#a6e22e">Doc</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">`usage: git clone [&lt;arguments&gt;] --repository=&lt;url&gt; --directory=&lt;directory&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">arguments:
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  -r, --repository                 repository to clone
+</span><span style="color:#e6db74">  -d, --directory                  path to directory
+</span><span style="color:#e6db74">  -v, --verbose                    be more verbose
+</span><span style="color:#e6db74">  -q, --quiet                      be more quiet
+</span><span style="color:#e6db74">  --progress                       force progress reporting
+</span><span style="color:#e6db74">  -n, --no-checkout                don&#39;t create a checkout
+</span><span style="color:#e6db74">  --bare                           create a bare repository
+</span><span style="color:#e6db74">  --mirror                         create a mirror repository (implies bare)
+</span><span style="color:#e6db74">  -l, --local                      to clone from a local repository
+</span><span style="color:#e6db74">  --no-hardlinks                   don&#39;t use local hardlinks, always copy
+</span><span style="color:#e6db74">  -s, --shared                     setup as shared repository
+</span><span style="color:#e6db74">  --recurse-submodules=&lt;pathspec&gt;  initialize submodules in the clone
+</span><span style="color:#e6db74">  -j, --jobs=&lt;n&gt;                   number of submodules cloned in parallel
+</span><span style="color:#e6db74">  --template=&lt;template-directory&gt;  directory from which templates will be used
+</span><span style="color:#e6db74">  --reference=&lt;repo&gt;               reference repository
+</span><span style="color:#e6db74">  --reference-if-able=&lt;repo&gt;       reference repository
+</span><span style="color:#e6db74">  --dissociate                     use --reference only while cloning
+</span><span style="color:#e6db74">  -o, --origin=&lt;name&gt;              use &lt;name&gt; instead of &#39;origin&#39; to track upstream
+</span><span style="color:#e6db74">  -b, --branch=&lt;branch&gt;            checkout &lt;branch&gt; instead of the remote&#39;s HEAD
+</span><span style="color:#e6db74">  -u, --upload-pack=&lt;path&gt;         path to git-upload-pack on the remote
+</span><span style="color:#e6db74">  --depth=&lt;depth&gt;                  create a shallow clone of that depth
+</span><span style="color:#e6db74">  --shallow-since=&lt;time&gt;           create a shallow clone since a specific time
+</span><span style="color:#e6db74">  --shallow-exclude=&lt;revision&gt;     deepen history of shallow clone, excluding rev
+</span><span style="color:#e6db74">  --single-branch                  clone only one branch, HEAD or --branch
+</span><span style="color:#e6db74">  --no-tags                        don&#39;t clone any tags, and make later fetches not to follow them
+</span><span style="color:#e6db74">  --shallow-submodules             any cloned submodules will be shallow
+</span><span style="color:#e6db74">  --separate-git-dir=&lt;gitdir&gt;      separate git dir from working tree
+</span><span style="color:#e6db74">  -c, --config=&lt;key=value&gt;         set config inside the new repository
+</span><span style="color:#e6db74">  -4, --ipv4                       use IPv4 addresses only
+</span><span style="color:#e6db74">  -6, --ipv6                       use IPv6 addresses only
+</span><span style="color:#e6db74">  --filter=&lt;args&gt;                  object filtering
+</span><span style="color:#e6db74">`</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Clone</span>) <span style="color:#a6e22e">Run</span>() {
+	<span style="color:#a6e22e">repr</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">c</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Clone</span>) <span style="color:#a6e22e">Help</span>() {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Doc</span>())
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Clone</span>) <span style="color:#a6e22e">Error</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+}
+</code></pre></div>
+<p>In this tutorial, we won’t go into detail about the logic of the Clone command because its functionality is pretty straightforward.</p>
+<h3 id="writing-the-methods-logic">
+  Writing the Methods’ Logic
+  <a class="anchor" href="#writing-the-methods-logic">#</a>
+</h3>
+<p>A specific method will run when a certain condition is met.</p>
+<h4 id="error-method">
+  <strong>Error method</strong>
+  <a class="anchor" href="#error-method">#</a>
+</h4>
+<p>The Error method will run when the user passes an argument or command that is not registered in the docstring. Usually, you&rsquo;ll just print the error message to <code>stderr</code> and exit the program. In our example, we&rsquo;ll ignore invalid arguments and force the Run method to run, otherwise we&rsquo;ll print the error message to <code>stderr</code> and exit the program:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Error</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">err</span>.(<span style="color:#66d9ef">type</span>) {
+	<span style="color:#66d9ef">case</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">InvalidArgumentError</span>:
+		<span style="color:#75715e">// Ignore InvalidArgumentError.
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Run</span>()
+	<span style="color:#66d9ef">default</span>:
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+	}
+}
+</code></pre></div>
+<p>The <code>InvalidArgumentError</code> is within the <code>args</code> package, so make sure to add <code>&quot;github.com/celicoo/docli/args&quot;</code> to the import declarations.</p>
+<h4 id="help-method">
+  <strong>Help method</strong>
+  <a class="anchor" href="#help-method">#</a>
+</h4>
+<p>The Help method will run when the user passes the <code>help</code> argument. Usually, you&rsquo;ll just print the docstring to <code>stdout</code>; that’s what we’ll do in our example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Help</span>() {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Doc</span>())
+}
+</code></pre></div>
+<h4 id="run-method">
+  <strong>Run method</strong>
+  <a class="anchor" href="#run-method">#</a>
+</h4>
+<p>The Run method will run when no error is found and an argument other than <code>help</code> is called. In our example we&rsquo;ll print the version if the <code>--version</code> (or <code>-v</code>) command-line argument is passed, otherwise we&rsquo;ll just print &ldquo;Hello, world!&quot;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Git</span>) <span style="color:#a6e22e">Run</span>() {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">Version</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">version</span>)
+		<span style="color:#66d9ef">return</span>
+	}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hello, world!&#34;</span>)
+}
+</code></pre></div>
+<h3 id="initializing-docli">
+  Initializing Docli
+  <a class="anchor" href="#initializing-docli">#</a>
+</h3>
+<p>We created a CLI app with one command and one argument. But if you try to execute it, it won’t run. There is one piece missing: initializing Docli.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Execute</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">g</span> <span style="color:#a6e22e">Git</span>
+	<span style="color:#a6e22e">args</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">docli</span>.<span style="color:#a6e22e">Args</span>()
+	<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">Bind</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">g</span>)
+}
+</code></pre></div>
+<h3 id="testing-the-cli-app">
+  Testing the CLI app
+  <a class="anchor" href="#testing-the-cli-app">#</a>
+</h3>
+<p>The very last step is to make sure it’s actually working. To do that, we need to build and run it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ go build
+$ ./git
+
+Hello, world!</code></pre></div>
+<p>Unlike other packages, Docli doesn&rsquo;t allow values to be assigned to arguments without using the <code>=</code> operator. You need to use the <code>=</code> operator, otherwise the internal parser will think you’re passing an argument and, as a result, the <code>Error</code> method of the struct that represents the command that you&rsquo;re executing will be called. The <code>clone</code> command was added to help you understand this, so go ahead and play with it.</p>
+<p>Congratulations! You’ve completed the tutorial. Thank you for reading, and I hope you enjoyed it.</p>
+<p>If you have any question, please don’t hesitate to <a href="https://github.com/celicoo/docli/issues">open an issue</a>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+  <div><a class="flex align-center" href="https://github.com/celicoo/docli/commit/ff7b946c940754811712b87d3b9e0f1c7f59d251" title='Last modified by celicoo | July 14, 2021' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>July 14, 2021</span>
+    </a>
+  </div>
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/celicoo/docli/edit/master/docs/content/content/docs/tutorial/index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function select(element){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(element);selection.removeAllRanges();selection.addRange(range);}
+document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("click",function(event){select(code.parentElement);if(navigator.clipboard){navigator.clipboard.writeText(code.parentElement.textContent);}});});})();</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#confirming-that-docli-is-installed">Confirming that Docli is installed</a></li>
+    <li><a href="#creating-a-new-cli-app">Creating a new CLI app</a>
+      <ul>
+        <li><a href="#directory-structure">Directory structure</a></li>
+        <li><a href="#writing-the-docstring">Writing the docstring</a></li>
+        <li><a href="#accessing-command-line-argument-values">Accessing command-line argument values</a></li>
+        <li><a href="#writing-the-methods-logic">Writing the Methods’ Logic</a></li>
+        <li><a href="#initializing-docli">Initializing Docli</a></li>
+        <li><a href="#testing-the-cli-app">Testing the CLI app</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
