@@ -2,8 +2,8 @@
   <h1>Docli</h1>
   <img alt="Docli" src="https://i.imgur.com/Z1GkZxR.png" width="450">
   <p>
-    <a href="https://travis-ci.org/celicoo/docli">
-      <img alt="Build Status" src="https://travis-ci.org/celicoo/docli.svg?branch=master">
+    <a href="https://app.travis-ci.com/celicoo/docli">
+      <img alt="Build Status" src="https://api.travis-ci.com/celicoo/docli.svg?branch=main">
     </a>
     <a href="https://godoc.org/github.com/celicoo/docli/v2">
       <img alt="GoDoc" src="https://godoc.org/github.com/celicoo/docli/v2?status.svg">
