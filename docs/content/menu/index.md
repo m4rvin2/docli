@@ -8,4 +8,4 @@ headless: true
 - [Unsupported Features]({{< relref "/docs/unsupported-features" >}})
 - [Examples](https://github.com/celicoo/docli/tree/master/examples)
 - [Feedback]({{< relref "/docs/feedback" >}})
-- [License]({{< relref "/docs/license" >}})
+- [License](https://github.com/celicoo/docli/blob/main/LICENSE)
