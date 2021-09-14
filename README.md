@@ -5,8 +5,8 @@
     <a href="https://travis-ci.org/celicoo/docli">
       <img alt="Build Status" src="https://travis-ci.org/celicoo/docli.svg?branch=master">
     </a>
-    <a href="https://godoc.org/github.com/celicoo/docli">
-      <img alt="GoDoc" src="https://godoc.org/github.com/celicoo/docli?status.svg">
+    <a href="https://godoc.org/github.com/celicoo/docli/v2">
+      <img alt="GoDoc" src="https://godoc.org/github.com/celicoo/docli/v2?status.svg">
     </a>
     <a href="#contributors">
       <img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-1-orange.svg">
@@ -24,7 +24,7 @@ Docli is 100% inspired by [docopt](https://github.com/docopt/docopt.go).
 
 ## Contributors
 
-Thanks goes to these wonderful people:
+Thanks go to these wonderful people:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->

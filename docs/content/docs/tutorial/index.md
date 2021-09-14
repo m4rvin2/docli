@@ -4,7 +4,9 @@ title: Tutorial
 
 # Tutorial
 
-Welcome to the Docli Tutorial! Here you'll be introduced to the key Docli concepts. If you get stuck at any point in the process, feel free to [download](https://github.com/celicoo/docli/tree/master/examples/git) a working example of the completed CLI app.
+Welcome to the Docli Tutorial! Here you'll be introduced to the key Docli concepts. If you get stuck at any point in 
+the process, feel free to [download](https://github.com/celicoo/docli/tree/main/examples/git) a working example of the 
+completed CLI app.
 
 ## Confirming that Docli is installed
 
@@ -15,7 +17,7 @@ package main
 
 import (
 	"github.com/alecthomas/repr"
-	"github.com/celicoo/docli"
+	"github.com/celicoo/docli/v2"
 )
 
 func main() {
@@ -255,7 +257,8 @@ func (g *Git) Error(err error) {
 }
 {{</highlight>}}
 
-The `InvalidArgumentError` is within the `args` package, so make sure to add `"github.com/celicoo/docli/args"` to the import declarations.
+The `InvalidArgumentError` is within the `args` package, so make sure to add `"github.com/celicoo/docli/v2/args"` to 
+the import declarations.
 
 #### **Help method**
 

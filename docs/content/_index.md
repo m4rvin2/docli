@@ -5,8 +5,8 @@ type: docs
 
 # Introduction
 
-[![Build Status](https://travis-ci.org/celicoo/docli.svg?branch=master)](https://travis-ci.org/celicoo/docli)
-[![GoDoc](https://godoc.org/github.com/celicoo/docli?status.svg)](https://godoc.org/github.com/celicoo/docli)
+[![Build Status](https://travis-ci.org/celicoo/docli.svg?branch=main)](https://travis-ci.org/celicoo/docli)
+[![GoDoc](https://godoc.org/github.com/celicoo/docli/v2?status.svg)](https://godoc.org/github.com/celicoo/docli/v2)
 
 Welcome to the official Docli documentation. Here you'll learn how to use Docli for your next project.
 
