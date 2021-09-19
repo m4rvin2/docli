@@ -12,4 +12,4 @@ Right now, Docli doesn't support the following features:
 * Intelligent suggestions
 * Positional arguments
 
-If you absolutely need either one of those features, we recommend these [alternative libraries](https://github.com/avelino/awesome-go#command-line).
+If you need either one of those features, we recommend you to check out [awesome-go#standard-cli](https://github.com/avelino/awesome-go#standard-cli).

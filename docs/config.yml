@@ -10,9 +10,8 @@ disableKinds:
   - taxonomyTerm
 
 params:
+  bookEditPath: edit/master/docs/content
   bookMenuBundle: /menu
   bookRepo: https://github.com/celicoo/docli
-  bookEditPath: edit/master/docs/content
-  # TODO(celicoo): change this.
-  # bookMenuBundleActiveLinkColor: \#004ed0
+  bookTheme: auto
   logo: /avatar.png

@@ -42,7 +42,7 @@ Confirming that Docli is installed #  Before starting the tutorial, let&amp;rsqu
       
       <guid>https://docli.dev/docs/unsupported-features/</guid>
       <description>Unsupported features #  Right now, Docli doesn&amp;rsquo;t support the following features:
- Bash autocomplete Default values Global arguments Intelligent suggestions Positional arguments  If you absolutely need either one of those features, we recommend these alternative libraries.</description>
+ Bash autocomplete Default values Global arguments Intelligent suggestions Positional arguments  If you need either one of those features, we recommend you to check out awesome-go#standard-cli.</description>
     </item>
     
   </channel>
