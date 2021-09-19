@@ -2,10 +2,10 @@ package docstring
 
 import "testing"
 
-func Test_Parse(test *testing.T) {
-	test.SkipNow()
+func TestParse(t *testing.T) {
+	t.SkipNow()
 }
 
-func Test_Parse_panics(test *testing.T) {
-	test.SkipNow()
+func TestParsePanics(t *testing.T) {
+	t.SkipNow()
 }

@@ -2,14 +2,14 @@ package docstring
 
 import "testing"
 
-func Test_Docstring_argument(test *testing.T) {
-	test.SkipNow()
+func TestDocstring_argument(t *testing.T) {
+	t.SkipNow()
 }
 
-func Test_Docstring_Identifiers(test *testing.T) {
-	test.SkipNow()
+func TestDocstring_Identifiers(t *testing.T) {
+	t.SkipNow()
 }
 
-func Test_Identifier_NameAsCamelCase(test *testing.T) {
-	test.SkipNow()
+func TestIdentifier_NameAsCamelCase(t *testing.T) {
+	t.SkipNow()
 }
