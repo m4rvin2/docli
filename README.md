@@ -1,9 +1,12 @@
 <div align="center">
   <h1>Docli</h1>
-  <img alt="Docli" src="https://i.imgur.com/Z1GkZxR.png" width="450">
+  <img alt="Docli" src="https://i.imgur.com/Z1GkZxR.png" width="250">
   <p>
     <a href="https://app.travis-ci.com/celicoo/docli">
       <img alt="Build Status" src="https://api.travis-ci.com/celicoo/docli.svg?branch=main">
+    </a>
+    <a href="https://codecov.io/gh/celicoo/docli">
+      <img src="https://codecov.io/gh/celicoo/docli/branch/main/graph/badge.svg?token=DSP50335SW"/>
     </a>
     <a href="https://godoc.org/github.com/celicoo/docli/v2">
       <img alt="GoDoc" src="https://godoc.org/github.com/celicoo/docli/v2?status.svg">
