@@ -1,4 +1,4 @@
-package docstring
+package arguments
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 	"github.com/celicoo/ttest"
 )
 
-func TestParse(t *testing.T) {
+func TestAST_Bind(t *testing.T) {
 	ttest.NewTest(t).
 		Skip().
 		SetSubject(nil).

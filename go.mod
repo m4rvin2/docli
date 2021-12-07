@@ -1,9 +1,13 @@
-module github.com/celicoo/docli/v2
+module github.com/celicoo/docli/v3
 
 go 1.12
 
 require (
-	github.com/alecthomas/participle v0.2.1
-	github.com/alecthomas/repr v0.0.0-20181024024818-d37bc2a10ba1
-	github.com/iancoleman/strcase v0.0.0-20190422225806-e506e3ef7365
+	github.com/celicoo/alligopher v0.0.0-20211103194405-23fc89513cc5 // indirect
+	github.com/celicoo/ttest v0.0.0-20211119185255-9dc3988ea6bd // indirect
+)
+
+replace (
+	github.com/celicoo/alligopher => ../alligopher
+	github.com/celicoo/ttest => ../ttest
 )

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/celicoo/docli/v2"
-	"github.com/celicoo/docli/v2/pkg/args"
+	"github.com/celicoo/docli/v3"
+	"github.com/celicoo/docli/v3/pkg/arguments"
 )
 
 const version = "0.0.1"
@@ -42,7 +42,7 @@ func (g *Git) Help() {
 
 func (g *Git) Error(err error) {
 	switch err.(type) {
-	case *args.InvalidArgumentError:
+	case *arguments.InvalidArgumentError:
 		// Ignore InvalidArgumentError.
 		g.Run()
 	default:
@@ -52,6 +52,5 @@ func (g *Git) Error(err error) {
 
 func Execute() {
 	var g Git
-	args := docli.Args()
-	args.Bind(&g)
+	docli.Arguments.Bind(&g)
 }

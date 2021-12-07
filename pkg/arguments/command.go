@@ -1,4 +1,4 @@
-package args
+package arguments
 
 type command interface {
 	// Doc returns the docstring of a command.
@@ -8,6 +8,6 @@ type command interface {
 	Run()
 	// Help is called when a user runs "<command> help".
 	Help()
-	// Error is called when unregistered command-line arguments are passed.
+	// Error is called when an unregistered command-line arguments is passed.
 	Error(error)
 }
